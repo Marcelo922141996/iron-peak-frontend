@@ -9,7 +9,6 @@ const NAV = [
   { to: "/sedes", label: "Sedes" },
   { to: "/planes", label: "Planes" },
   { to: "/tienda", label: "Tienda" },
-  { to: "/horarios", label: "Horarios" },
   { to: "/galeria", label: "Galería" },
   { to: "/blog", label: "Blog" },
   { to: "/contacto", label: "Contacto" },
