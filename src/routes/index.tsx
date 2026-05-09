@@ -3,6 +3,8 @@ import { useState } from "react";
 import { Layout } from "@/components/site/Layout";
 import { BeforeAfterSlider } from "@/components/site/BeforeAfterSlider";
 import { TrialBookingForm } from "@/components/site/TrialBookingForm";
+import { ProductDetailDialog } from "@/components/site/ProductDetailDialog";
+import { InstagramEmbedGrid } from "@/components/site/InstagramEmbedGrid";
 import heroImg from "@/assets/hero.jpg";
 import musculacionImg from "@/assets/musculacion.jpg";
 import cardioImg from "@/assets/cardio.jpg";
@@ -15,7 +17,7 @@ import {
   Clock, MapPin, Star, Trophy, Flame, ShieldCheck, ArrowRight, Quote,
   Instagram, Package, MessageCircle, ShoppingBag, ChevronDown, CalendarDays,
 } from "lucide-react";
-import { SEDES, PLANES, SITE, PRODUCTS, DIAS, SCHEDULE, TRANSFORMACIONES, INSTAGRAM_POSTS, type Objetivo } from "@/lib/site-data";
+import { SEDES, PLANES, SITE, PRODUCTS, DIAS, SCHEDULE, TRANSFORMACIONES, INSTAGRAM_POST_URLS, type Objetivo, type Product } from "@/lib/site-data";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -63,6 +65,7 @@ function Home() {
   const [showAllPlans, setShowAllPlans] = useState(false);
   const [dia, setDia] = useState<string>(DIAS[0]);
   const [objetivo, setObjetivo] = useState<"Todos" | Objetivo>("Todos");
+  const [activeProduct, setActiveProduct] = useState<Product | null>(null);
   const planesVisibles = showAllPlans ? PLANES : PLANES.slice(0, 3);
   const transformaciones = objetivo === "Todos" ? TRANSFORMACIONES : TRANSFORMACIONES.filter((t) => t.objetivo === objetivo);
   const tiendaPreview = PRODUCTS.slice(0, 4);
@@ -127,6 +130,11 @@ function Home() {
             </div>
           ))}
         </div>
+        <div className="text-center mt-10">
+          <Link to="/nosotros" className="inline-flex items-center gap-2 px-6 py-3 border border-border hover:border-primary hover:text-primary font-heading uppercase tracking-wider text-sm transition">
+            Ver más <ArrowRight className="h-4 w-4" />
+          </Link>
+        </div>
       </section>
 
       {/* SERVICES */}
@@ -150,6 +158,11 @@ function Home() {
                 </div>
               </div>
             ))}
+          </div>
+          <div className="text-center mt-10">
+            <Link to="/servicios" className="inline-flex items-center gap-2 px-6 py-3 border border-border hover:border-primary hover:text-primary font-heading uppercase tracking-wider text-sm transition">
+              Ver más <ArrowRight className="h-4 w-4" />
+            </Link>
           </div>
         </div>
       </section>
@@ -226,9 +239,13 @@ function Home() {
         </div>
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
           {tiendaPreview.map((p) => (
-            <div key={p.name} className="border border-border bg-card overflow-hidden group flex flex-col">
+            <button key={p.id} onClick={() => setActiveProduct(p)} className="text-left border border-border bg-card overflow-hidden group flex flex-col hover:border-primary hover:shadow-glow transition">
               <div className="aspect-square bg-gradient-hero grid place-items-center relative overflow-hidden">
-                <Package className="h-20 w-20 text-primary/40 group-hover:scale-110 transition" strokeWidth={1} />
+                {p.images[0] ? (
+                  <img src={p.images[0]} alt={p.name} loading="lazy" className="absolute inset-0 h-full w-full object-cover transition duration-500 group-hover:scale-110" />
+                ) : (
+                  <Package className="h-20 w-20 text-primary/40" strokeWidth={1} />
+                )}
                 <span className="absolute top-3 left-3 text-[10px] font-heading uppercase tracking-widest bg-background/70 backdrop-blur px-2 py-1">{p.cat}</span>
               </div>
               <div className="p-5 flex flex-col flex-1">
@@ -236,12 +253,12 @@ function Home() {
                 <p className="text-xs text-muted-foreground mt-1 flex-1">{p.desc}</p>
                 <div className="mt-4 flex items-center justify-between">
                   <span className="font-display text-2xl text-primary">S/{p.price}</span>
-                  <a href={`https://wa.me/51${SITE.whatsapp}?text=${encodeURIComponent(`Quiero comprar ${p.name}`)}`} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1.5 text-[10px] font-heading uppercase tracking-wider px-3 py-2 bg-gradient-primary text-primary-foreground">
-                    <MessageCircle className="h-3 w-3" /> Pedir
-                  </a>
+                  <span className="inline-flex items-center gap-1.5 text-[10px] font-heading uppercase tracking-wider px-3 py-2 bg-gradient-primary text-primary-foreground">
+                    Ver detalle
+                  </span>
                 </div>
               </div>
-            </div>
+            </button>
           ))}
         </div>
         <div className="text-center mt-10">
@@ -350,19 +367,7 @@ function Home() {
           </div>
           <a href={SITE.instagram} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 font-heading uppercase tracking-wider text-sm text-primary">Ver perfil <ArrowRight className="h-4 w-4" /></a>
         </div>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-          {INSTAGRAM_POSTS.map((p) => (
-            <a key={p.id} href={p.url} target="_blank" rel="noreferrer" className="relative block aspect-square overflow-hidden border border-border group">
-              <img src={p.img} alt={p.caption} loading="lazy" className="absolute inset-0 h-full w-full object-cover transition duration-500 group-hover:scale-110" />
-              <div className="absolute inset-0 bg-background/0 group-hover:bg-background/70 transition flex items-end p-3">
-                <div className="opacity-0 group-hover:opacity-100 transition">
-                  <Instagram className="h-5 w-5 text-primary mb-1" />
-                  <p className="text-xs">{p.caption}</p>
-                </div>
-              </div>
-            </a>
-          ))}
-        </div>
+        <InstagramEmbedGrid urls={INSTAGRAM_POST_URLS} />
       </section>
 
       {/* TESTIMONIOS */}
@@ -386,6 +391,8 @@ function Home() {
           </div>
         </div>
       </section>
+
+      <ProductDetailDialog product={activeProduct} open={!!activeProduct} onOpenChange={(v) => !v && setActiveProduct(null)} />
     </Layout>
   );
 }
