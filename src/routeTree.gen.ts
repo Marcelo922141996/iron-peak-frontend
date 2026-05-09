@@ -15,6 +15,7 @@ import { Route as SedesRouteImport } from './routes/sedes'
 import { Route as PlanesRouteImport } from './routes/planes'
 import { Route as NosotrosRouteImport } from './routes/nosotros'
 import { Route as HorariosRouteImport } from './routes/horarios'
+import { Route as GaleriaRouteImport } from './routes/galeria'
 import { Route as IndexRouteImport } from './routes/index'
 
 const TiendaRoute = TiendaRouteImport.update({
@@ -47,6 +48,11 @@ const HorariosRoute = HorariosRouteImport.update({
   path: '/horarios',
   getParentRoute: () => rootRouteImport,
 } as any)
+const GaleriaRoute = GaleriaRouteImport.update({
+  id: '/galeria',
+  path: '/galeria',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -55,6 +61,7 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/galeria': typeof GaleriaRoute
   '/horarios': typeof HorariosRoute
   '/nosotros': typeof NosotrosRoute
   '/planes': typeof PlanesRoute
@@ -64,6 +71,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/galeria': typeof GaleriaRoute
   '/horarios': typeof HorariosRoute
   '/nosotros': typeof NosotrosRoute
   '/planes': typeof PlanesRoute
@@ -74,6 +82,7 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/galeria': typeof GaleriaRoute
   '/horarios': typeof HorariosRoute
   '/nosotros': typeof NosotrosRoute
   '/planes': typeof PlanesRoute
@@ -85,6 +94,7 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/galeria'
     | '/horarios'
     | '/nosotros'
     | '/planes'
@@ -94,6 +104,7 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/galeria'
     | '/horarios'
     | '/nosotros'
     | '/planes'
@@ -103,6 +114,7 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/galeria'
     | '/horarios'
     | '/nosotros'
     | '/planes'
@@ -113,6 +125,7 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  GaleriaRoute: typeof GaleriaRoute
   HorariosRoute: typeof HorariosRoute
   NosotrosRoute: typeof NosotrosRoute
   PlanesRoute: typeof PlanesRoute
@@ -165,6 +178,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof HorariosRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/galeria': {
+      id: '/galeria'
+      path: '/galeria'
+      fullPath: '/galeria'
+      preLoaderRoute: typeof GaleriaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -177,6 +197,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  GaleriaRoute: GaleriaRoute,
   HorariosRoute: HorariosRoute,
   NosotrosRoute: NosotrosRoute,
   PlanesRoute: PlanesRoute,
