@@ -69,19 +69,122 @@ export const SERVICIOS = [
   { slug: "nutricion", title: "Nutrición", desc: "Asesoría, plan de alimentación y suplementación para tus metas." },
 ];
 
-export const PRODUCTS = [
-  { name: "Lady Pro Proteína", cat: "Suplemento", price: 95, desc: "Proteína con aguaje, suero de leche, soya y colágeno." },
-  { name: "Whey Protein 2kg", cat: "Suplemento", price: 220, desc: "Proteína de suero, 24g por scoop." },
-  { name: "Creatina Monohidratada", cat: "Suplemento", price: 75, desc: "300g · Pura, sin saborizantes." },
-  { name: "BCAA 2:1:1", cat: "Suplemento", price: 90, desc: "Recuperación muscular acelerada." },
-  { name: "Pre-entreno Burst", cat: "Suplemento", price: 110, desc: "Energía explosiva sin caída." },
-  { name: "Quemador Termogénico", cat: "Suplemento", price: 85, desc: "Apoyo al déficit calórico." },
-  { name: "Polo Iron Gym", cat: "Indumentaria", price: 45, desc: "Algodón premium, logo bordado." },
-  { name: "Tomatodo Iron Gym 1L", cat: "Accesorio", price: 35, desc: "Acero inoxidable, doble pared." },
-  { name: "Shaker 600ml", cat: "Accesorio", price: 25, desc: "Resistente, libre de BPA." },
-  { name: "Guantes de entrenamiento", cat: "Accesorio", price: 55, desc: "Cuero sintético, agarre firme." },
-  { name: "Cinturón de levantamiento", cat: "Accesorio", price: 95, desc: "Cuero genuino, soporte lumbar." },
-  { name: "Snack proteico", cat: "Nutrición", price: 12, desc: "20g de proteína, sin azúcar." },
+export type Comment = { user: string; rating: number; text: string };
+export type Product = {
+  id: string;
+  name: string;
+  cat: string;
+  price: number;
+  desc: string;
+  longDesc: string;
+  images: string[];
+  shipping: { jaen: number; nacional: number; eta: string };
+  pickup: { available: boolean; sedes: string[]; note: string };
+  stock: string;
+  comments: Comment[];
+};
+
+const COMMON_PICKUP = {
+  available: true,
+  sedes: ["Sede Principal", "Bolívar Plaza", "Pueblo Libre", "Los Robles", "Alfredo Bastos"],
+  note: "Recojo gratis en cualquiera de nuestras 5 sedes.",
+};
+
+export const PRODUCTS: Product[] = [
+  { id: "lady-pro", name: "Lady Pro Proteína", cat: "Suplemento", price: 95,
+    desc: "Proteína con aguaje, suero de leche, soya y colágeno.",
+    longDesc: "Fórmula femenina con aguaje, colágeno hidrolizado y suero de leche. 22g de proteína, vitaminas y minerales para tonificar y cuidar tu piel.",
+    images: ["https://images.unsplash.com/photo-1593095948071-474c5cc2989d?w=900&q=80","https://images.unsplash.com/photo-1579722821273-0f6c1b5d0b8a?w=900&q=80","https://images.unsplash.com/photo-1610725664285-7c57e6eeac3f?w=900&q=80"],
+    shipping: { jaen: 5, nacional: 18, eta: "24–48 h en Jaén · 3–5 días nacional" },
+    pickup: COMMON_PICKUP, stock: "Disponible",
+    comments: [
+      { user: "Lucía R.", rating: 5, text: "Sabor delicioso y noté el cambio en 3 semanas." },
+      { user: "Andrea P.", rating: 5, text: "Mejoró mi piel y mi recuperación post entreno." },
+      { user: "María G.", rating: 4, text: "Buen producto, pediría que vuelva el sabor fresa." },
+    ]},
+  { id: "whey-2kg", name: "Whey Protein 2kg", cat: "Suplemento", price: 220,
+    desc: "Proteína de suero, 24g por scoop.",
+    longDesc: "Proteína de suero concentrada e hidrolizada, 24g por scoop, bajo en azúcares. Ideal para hipertrofia y recuperación.",
+    images: ["https://images.unsplash.com/photo-1620207418302-439b387441b0?w=900&q=80","https://images.unsplash.com/photo-1599058917212-d750089bc07e?w=900&q=80"],
+    shipping: { jaen: 5, nacional: 22, eta: "24–48 h en Jaén · 3–5 días nacional" },
+    pickup: COMMON_PICKUP, stock: "Disponible",
+    comments: [
+      { user: "Diego T.", rating: 5, text: "Se mezcla perfecto, sin grumos." },
+      { user: "Renato S.", rating: 5, text: "Mi proteína de cabecera, rinde un montón." },
+    ]},
+  { id: "creatina", name: "Creatina Monohidratada", cat: "Suplemento", price: 75,
+    desc: "300g · Pura, sin saborizantes.",
+    longDesc: "Creatina monohidratada micronizada 100% pura. 60 servicios. Aumenta fuerza, potencia y volumen muscular.",
+    images: ["https://images.unsplash.com/photo-1612531386530-97286d97c2d2?w=900&q=80"],
+    shipping: { jaen: 5, nacional: 15, eta: "24–48 h en Jaén · 3–5 días nacional" },
+    pickup: COMMON_PICKUP, stock: "Disponible",
+    comments: [
+      { user: "Carlos M.", rating: 5, text: "Subí 3kg en banca en un mes." },
+      { user: "Jhon S.", rating: 4, text: "Buen precio y calidad." },
+    ]},
+  { id: "bcaa", name: "BCAA 2:1:1", cat: "Suplemento", price: 90,
+    desc: "Recuperación muscular acelerada.",
+    longDesc: "Aminoácidos de cadena ramificada en proporción 2:1:1. Reducen la fatiga y aceleran la recuperación.",
+    images: ["https://images.unsplash.com/photo-1579758629938-03607ccdbaba?w=900&q=80"],
+    shipping: { jaen: 5, nacional: 18, eta: "24–48 h en Jaén · 3–5 días nacional" },
+    pickup: COMMON_PICKUP, stock: "Disponible",
+    comments: [{ user: "Ana P.", rating: 5, text: "Menos agujetas al día siguiente." }]},
+  { id: "preentreno", name: "Pre-entreno Burst", cat: "Suplemento", price: 110,
+    desc: "Energía explosiva sin caída.",
+    longDesc: "Pre-entreno con cafeína, beta-alanina y citrulina. Energía sostenida y bombeo brutal.",
+    images: ["https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=900&q=80"],
+    shipping: { jaen: 5, nacional: 18, eta: "24–48 h en Jaén · 3–5 días nacional" },
+    pickup: COMMON_PICKUP, stock: "Pocas unidades",
+    comments: [{ user: "Diego T.", rating: 5, text: "El bombeo es real, recomendado." }]},
+  { id: "quemador", name: "Quemador Termogénico", cat: "Suplemento", price: 85,
+    desc: "Apoyo al déficit calórico.",
+    longDesc: "Termogénico con L-carnitina y té verde. Acelera el metabolismo y la oxidación de grasas.",
+    images: ["https://images.unsplash.com/photo-1579722820308-d74e571900a9?w=900&q=80"],
+    shipping: { jaen: 5, nacional: 15, eta: "24–48 h en Jaén · 3–5 días nacional" },
+    pickup: COMMON_PICKUP, stock: "Disponible",
+    comments: [{ user: "María G.", rating: 4, text: "Me ayudó a romper meseta." }]},
+  { id: "polo", name: "Polo Iron Gym", cat: "Indumentaria", price: 45,
+    desc: "Algodón premium, logo bordado.",
+    longDesc: "Polo de algodón pima 220g, logo bordado en pecho. Tallas S, M, L, XL. Color negro/rojo.",
+    images: ["https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=900&q=80"],
+    shipping: { jaen: 5, nacional: 12, eta: "24–48 h en Jaén · 3–5 días nacional" },
+    pickup: COMMON_PICKUP, stock: "Disponible",
+    comments: [{ user: "Renato S.", rating: 5, text: "Tela top, calza perfecto." }]},
+  { id: "tomatodo", name: "Tomatodo Iron Gym 1L", cat: "Accesorio", price: 35,
+    desc: "Acero inoxidable, doble pared.",
+    longDesc: "Tomatodo de acero inoxidable doble pared 1L. Conserva frío 24h y caliente 12h. Logo grabado.",
+    images: ["https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=900&q=80"],
+    shipping: { jaen: 5, nacional: 12, eta: "24–48 h en Jaén · 3–5 días nacional" },
+    pickup: COMMON_PICKUP, stock: "Disponible",
+    comments: [{ user: "Andrea P.", rating: 5, text: "Mantiene el agua heladita todo el día." }]},
+  { id: "shaker", name: "Shaker 600ml", cat: "Accesorio", price: 25,
+    desc: "Resistente, libre de BPA.",
+    longDesc: "Shaker con resorte mezclador, libre de BPA, escala medidora. Ideal para batidos.",
+    images: ["https://images.unsplash.com/photo-1626197031507-c17099753214?w=900&q=80"],
+    shipping: { jaen: 5, nacional: 10, eta: "24–48 h en Jaén · 3–5 días nacional" },
+    pickup: COMMON_PICKUP, stock: "Disponible",
+    comments: [{ user: "Carlos M.", rating: 4, text: "Hace su trabajo, sin filtraciones." }]},
+  { id: "guantes", name: "Guantes de entrenamiento", cat: "Accesorio", price: 55,
+    desc: "Cuero sintético, agarre firme.",
+    longDesc: "Guantes con palma reforzada y muñequera ajustable. Tallas S, M, L.",
+    images: ["https://images.unsplash.com/photo-1517344800994-80b3486d4af9?w=900&q=80"],
+    shipping: { jaen: 5, nacional: 12, eta: "24–48 h en Jaén · 3–5 días nacional" },
+    pickup: COMMON_PICKUP, stock: "Disponible",
+    comments: [{ user: "Jhon S.", rating: 5, text: "Mejor agarre y nada de callos." }]},
+  { id: "cinturon", name: "Cinturón de levantamiento", cat: "Accesorio", price: 95,
+    desc: "Cuero genuino, soporte lumbar.",
+    longDesc: "Cinturón de cuero genuino 10cm con doble hebilla. Soporte lumbar para sentadilla y peso muerto.",
+    images: ["https://images.unsplash.com/photo-1599058917765-a780eda07a3e?w=900&q=80"],
+    shipping: { jaen: 5, nacional: 18, eta: "24–48 h en Jaén · 3–5 días nacional" },
+    pickup: COMMON_PICKUP, stock: "Pocas unidades",
+    comments: [{ user: "Diego T.", rating: 5, text: "Soporte real, levanté 20kg más en sentadilla." }]},
+  { id: "snack", name: "Snack proteico", cat: "Nutrición", price: 12,
+    desc: "20g de proteína, sin azúcar.",
+    longDesc: "Barra proteica 60g con 20g de proteína, sin azúcar añadido. Sabores chocolate y maní.",
+    images: ["https://images.unsplash.com/photo-1606312619070-d48b4c652a52?w=900&q=80"],
+    shipping: { jaen: 5, nacional: 10, eta: "24–48 h en Jaén · 3–5 días nacional" },
+    pickup: COMMON_PICKUP, stock: "Disponible",
+    comments: [{ user: "Lucía R.", rating: 5, text: "Mi snack post-entreno favorito." }]},
 ];
 
 export const DIAS = ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo"] as const;
@@ -103,6 +206,18 @@ export const TRANSFORMACIONES: { name: string; objetivo: Objetivo; meses: number
   { name: "Ana P.", objetivo: "Pérdida de peso", meses: 6, antes: "https://images.unsplash.com/photo-1518310383802-640c2de311b2?w=600&q=70", despues: "https://images.unsplash.com/photo-1518310952931-b1de897abd40?w=600&q=70", quote: "-15 kg y una nueva versión de mí." },
   { name: "Renato S.", objetivo: "Ganancia muscular", meses: 12, antes: "https://images.unsplash.com/photo-1567013127542-490d757e51fc?w=600&q=70", despues: "https://images.unsplash.com/photo-1583454152671-0c736ab1f6f1?w=600&q=70", quote: "Subí 14 kg de músculo con coach personal." },
   { name: "María G.", objetivo: "Definición", meses: 4, antes: "https://images.unsplash.com/photo-1518310383802-640c2de311b2?w=600&q=70", despues: "https://images.unsplash.com/photo-1554344728-77cf90d9ed26?w=600&q=70", quote: "Tonifiqué piernas y glúteos." },
+];
+
+// Configurable Instagram post URLs. Reemplaza por las URLs reales (formato: https://www.instagram.com/p/SHORTCODE/)
+export const INSTAGRAM_POST_URLS: string[] = [
+  "https://www.instagram.com/p/C8xK3J9Oa1Z/",
+  "https://www.instagram.com/p/C8u2pTQOq8w/",
+  "https://www.instagram.com/p/C8s0RmcOlfP/",
+  "https://www.instagram.com/p/C8qX9K1OWvQ/",
+  "https://www.instagram.com/p/C8oA1bROmhJ/",
+  "https://www.instagram.com/p/C8li6r9Op2K/",
+  "https://www.instagram.com/p/C8jH4VWOqXn/",
+  "https://www.instagram.com/p/C8gE2T3OkLv/",
 ];
 
 export const INSTAGRAM_POSTS = [
