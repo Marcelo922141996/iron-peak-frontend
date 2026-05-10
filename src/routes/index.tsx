@@ -5,7 +5,6 @@ import { BeforeAfterSlider } from "@/components/site/BeforeAfterSlider";
 import { TrialBookingForm } from "@/components/site/TrialBookingForm";
 import { ProductDetailDialog } from "@/components/site/ProductDetailDialog";
 import { InstagramEmbedGrid } from "@/components/site/InstagramEmbedGrid";
-import { Hero3DScene } from "@/components/three/Hero3DScene";
 import { Tilt3DCard } from "@/components/site/Tilt3DCard";
 import heroImg from "@/assets/hero.jpg";
 import musculacionImg from "@/assets/musculacion.jpg";
@@ -76,12 +75,9 @@ function Home() {
     <Layout>
       {/* HERO */}
       <section className="relative overflow-hidden min-h-[88vh]">
-        <img src={heroImg} alt="Atleta entrenando en Iron Gym Jaén" width={1920} height={1280} className="absolute inset-0 h-full w-full object-cover opacity-40" />
-        <div className="absolute inset-0">
-          <Hero3DScene />
-        </div>
-        <div className="absolute inset-0 bg-gradient-to-r from-background via-background/70 to-transparent" />
-        <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent" />
+        <img src={heroImg} alt="Atleta entrenando en Iron Gym Jaén" width={1920} height={1280} className="absolute inset-0 h-full w-full object-cover" />
+        <div className="absolute inset-0 bg-gradient-to-r from-background/90 via-background/60 to-background/20" />
+        <div className="absolute inset-0 bg-gradient-to-t from-background via-background/30 to-transparent" />
         <div className="relative mx-auto max-w-7xl px-4 lg:px-8 py-32 lg:py-48">
           <div className="inline-flex items-center gap-2 rounded-full border border-primary/40 bg-primary/10 px-3 py-1 mb-6 backdrop-blur">
             <Star className="h-3.5 w-3.5 text-primary fill-primary" />
