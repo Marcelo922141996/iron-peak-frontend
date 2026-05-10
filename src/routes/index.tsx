@@ -5,6 +5,8 @@ import { BeforeAfterSlider } from "@/components/site/BeforeAfterSlider";
 import { TrialBookingForm } from "@/components/site/TrialBookingForm";
 import { ProductDetailDialog } from "@/components/site/ProductDetailDialog";
 import { InstagramEmbedGrid } from "@/components/site/InstagramEmbedGrid";
+import { Hero3DScene } from "@/components/three/Hero3DScene";
+import { Tilt3DCard } from "@/components/site/Tilt3DCard";
 import heroImg from "@/assets/hero.jpg";
 import musculacionImg from "@/assets/musculacion.jpg";
 import cardioImg from "@/assets/cardio.jpg";
@@ -73,9 +75,13 @@ function Home() {
   return (
     <Layout>
       {/* HERO */}
-      <section className="relative overflow-hidden">
-        <img src={heroImg} alt="Atleta entrenando en Iron Gym Jaén" width={1920} height={1280} className="absolute inset-0 h-full w-full object-cover" />
-        <div className="absolute inset-0 bg-gradient-overlay" />
+      <section className="relative overflow-hidden min-h-[88vh]">
+        <img src={heroImg} alt="Atleta entrenando en Iron Gym Jaén" width={1920} height={1280} className="absolute inset-0 h-full w-full object-cover opacity-40" />
+        <div className="absolute inset-0">
+          <Hero3DScene />
+        </div>
+        <div className="absolute inset-0 bg-gradient-to-r from-background via-background/70 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent" />
         <div className="relative mx-auto max-w-7xl px-4 lg:px-8 py-32 lg:py-48">
           <div className="inline-flex items-center gap-2 rounded-full border border-primary/40 bg-primary/10 px-3 py-1 mb-6 backdrop-blur">
             <Star className="h-3.5 w-3.5 text-primary fill-primary" />
@@ -123,11 +129,11 @@ function Home() {
         </div>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
           {REASONS.map((r) => (
-            <div key={r.title} className="group p-7 border border-border bg-card hover:border-primary transition shadow-card">
+            <Tilt3DCard key={r.title} className="group p-7 border border-border bg-card hover:border-primary transition shadow-card overflow-hidden">
               <r.icon className="h-8 w-8 text-primary mb-4" strokeWidth={1.5} />
               <h3 className="font-heading text-xl uppercase tracking-wide">{r.title}</h3>
               <p className="text-sm text-muted-foreground mt-2">{r.text}</p>
-            </div>
+            </Tilt3DCard>
           ))}
         </div>
         <div className="text-center mt-10">
@@ -149,14 +155,14 @@ function Home() {
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
             {SERVICES.map((s) => (
-              <div key={s.title} className="group relative overflow-hidden border border-border aspect-[4/5]">
+              <Tilt3DCard key={s.title} intensity={8} className="group relative overflow-hidden border border-border aspect-[4/5] shadow-card">
                 <img src={s.img} alt={s.title} loading="lazy" className="absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-110" />
                 <div className="absolute inset-0 bg-gradient-to-t from-background via-background/50 to-transparent" />
                 <div className="absolute inset-0 p-7 flex flex-col justify-end">
                   <s.icon className="h-7 w-7 text-primary mb-3" strokeWidth={1.5} />
                   <h3 className="font-display text-3xl tracking-wider">{s.title}</h3>
                 </div>
-              </div>
+              </Tilt3DCard>
             ))}
           </div>
           <div className="text-center mt-10">
@@ -197,7 +203,7 @@ function Home() {
           </div>
           <div className={`grid gap-5 max-w-6xl mx-auto ${showAllPlans ? "md:grid-cols-2 lg:grid-cols-5" : "md:grid-cols-3"}`}>
             {planesVisibles.map((p) => (
-              <div key={p.name} className={`p-7 border ${p.highlight ? "border-primary bg-card shadow-glow" : "border-border bg-card"} flex flex-col`}>
+              <Tilt3DCard key={p.name} intensity={10} className={`p-7 border ${p.highlight ? "border-primary bg-card shadow-glow" : "border-border bg-card"} flex flex-col`}>
                 {p.highlight && <div className="text-xs font-heading uppercase tracking-widest text-primary mb-2">Más popular</div>}
                 <h3 className="font-display text-2xl">{p.name}</h3>
                 <div className="mt-3 flex items-baseline gap-1">
@@ -215,7 +221,7 @@ function Home() {
                 >
                   <MessageCircle className="h-4 w-4" /> {p.cta}
                 </a>
-              </div>
+              </Tilt3DCard>
             ))}
           </div>
           <div className="text-center mt-8">
