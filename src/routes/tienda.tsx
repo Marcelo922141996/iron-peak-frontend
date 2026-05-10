@@ -34,10 +34,15 @@ function Page() {
           {list.map((p) => (
             <button key={p.id} onClick={() => setActive(p)} className="text-left border border-border bg-card overflow-hidden group hover:border-primary hover:shadow-glow transition flex flex-col">
               <div className="aspect-square bg-gradient-hero grid place-items-center relative overflow-hidden">
-                {p.images[0] ? (
-                  <img src={p.images[0]} alt={p.name} loading="lazy" className="absolute inset-0 h-full w-full object-cover transition duration-500 group-hover:scale-110" />
-                ) : (
-                  <Package className="h-20 w-20 text-primary/40" strokeWidth={1} />
+                <Package className="h-20 w-20 text-primary/40" strokeWidth={1} />
+                {p.images[0] && (
+                  <img
+                    src={p.images[0]}
+                    alt={p.name}
+                    loading="lazy"
+                    onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = "none"; }}
+                    className="absolute inset-0 h-full w-full object-cover transition duration-500 group-hover:scale-110"
+                  />
                 )}
                 <span className="absolute top-3 left-3 text-xs font-heading uppercase tracking-widest bg-background/70 backdrop-blur px-2 py-1">{p.cat}</span>
               </div>
