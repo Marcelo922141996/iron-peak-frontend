@@ -13,9 +13,7 @@ export function ScrollFx() {
       // Reveal on scroll for sections
       gsap.utils.toArray<HTMLElement>("section").forEach((section) => {
         const headings = section.querySelectorAll("h1, h2, h3");
-        const cards = section.querySelectorAll(
-          "[data-fx='card'], .group, article, [class*='rounded']:not(button):not(a)"
-        );
+        const cards = section.querySelectorAll("[data-fx='card']");
 
         if (headings.length) {
           gsap.from(headings, {
