@@ -287,13 +287,8 @@ function Home() {
               <div
                 key={p.name}
                 data-fx="card"
-                className={`relative shrink-0 snap-start w-[80%] sm:w-[55%] lg:w-auto p-7 flex flex-col ${p.highlight ? "conic-border lg:scale-105 z-10" : ""}`}
-                style={{
-                  borderRadius: 24,
-                  background: p.highlight ? "rgba(20,5,5,0.85)" : "rgba(13,13,13,0.78)",
-                  backdropFilter: "blur(20px)",
-                  border: p.highlight ? "1px solid transparent" : "1px solid rgba(255,255,255,0.08)",
-                }}
+                className={`glass relative shrink-0 snap-start w-[80%] sm:w-[55%] lg:w-auto p-7 flex flex-col ${p.highlight ? "conic-border lg:scale-105 z-10" : ""}`}
+                style={{ borderRadius: 24 }}
               >
                 {p.highlight && (
                   <span className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 rounded-full bg-gradient-primary text-primary-foreground font-heading uppercase text-[10px] tracking-widest shadow-glow">
