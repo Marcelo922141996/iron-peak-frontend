@@ -50,8 +50,17 @@ export function ScrollFx() {
     });
 
     const t = setTimeout(() => ScrollTrigger.refresh(), 200);
+    const onLoad = () => ScrollTrigger.refresh();
+    window.addEventListener("load", onLoad);
+    // Also refresh when any image finishes loading (covers lazy + late layout shifts)
+    const imgs = Array.from(document.images);
+    imgs.forEach((img) => {
+      if (!img.complete) img.addEventListener("load", onLoad, { once: true });
+    });
     return () => {
       clearTimeout(t);
+      window.removeEventListener("load", onLoad);
+      imgs.forEach((img) => img.removeEventListener("load", onLoad));
       ctx.revert();
     };
   }, [location.pathname]);

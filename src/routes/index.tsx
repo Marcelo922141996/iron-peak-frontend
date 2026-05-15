@@ -85,12 +85,21 @@ function Home() {
 
   // Hero word-by-word reveal
   const heroTitleRef = useRef<HTMLHeadingElement>(null);
+  const heroImgRef = useRef<HTMLImageElement>(null);
   useEffect(() => {
     if (!heroTitleRef.current) return;
     const ctx = gsap.context(() => {
       gsap.from(".reveal-word", {
         y: 80, opacity: 0, duration: 1, ease: "power4.out", stagger: 0.12, delay: 0.2,
       });
+      // Cinematic zoom-in on hero background
+      if (heroImgRef.current) {
+        gsap.fromTo(
+          heroImgRef.current,
+          { scale: 1.25, filter: "brightness(0.6)" },
+          { scale: 1, filter: "brightness(1)", duration: 2.4, ease: "power3.out" }
+        );
+      }
     }, heroTitleRef);
     return () => ctx.revert();
   }, []);
@@ -126,8 +135,16 @@ function Home() {
     <Layout>
       {/* HERO */}
       <section className="relative overflow-hidden min-h-[92vh] bg-background">
-        <img src={heroImg} alt="Atleta entrenando en Iron Gym Jaén" width={1920} height={1280} className="absolute inset-0 h-full w-full object-cover opacity-90" data-parallax />
-        <div className="absolute inset-0 bg-gradient-to-r from-background/95 via-background/65 to-background/30" />
+        <img
+          ref={heroImgRef}
+          src={heroImg}
+          alt="Atleta entrenando en Iron Gym Jaén"
+          width={1920}
+          height={1280}
+          className="absolute inset-0 h-full w-full object-cover opacity-90 will-change-transform origin-center"
+          data-parallax
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-background/95 via-background/65 to-background/20" />
         <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent" />
         {/* niebla volumétrica roja */}
         <div className="absolute inset-x-0 bottom-0 h-[60%]"><HeroFog /></div>
@@ -189,7 +206,7 @@ function Home() {
             </div>
           ))}
         </div>
-        <div className="text-center mt-10">
+        <div className="text-center mt-16 md:mt-20">
           <Link to="/nosotros" className="btn-pill btn-pill-outline">Ver más <ArrowRight className="h-4 w-4" /></Link>
         </div>
       </section>
@@ -204,7 +221,7 @@ function Home() {
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
             {SERVICES.map((s) => (
-              <article key={s.title} data-fx="card" className="group relative overflow-hidden border border-white/8 shadow-card transition-all duration-500 hover:scale-[1.03] hover:border-primary/60 hover:shadow-[0_20px_60px_-20px_rgba(232,0,13,.6)]" style={{ borderRadius: 24, height: 380 }}>
+              <article key={s.title} className="group relative overflow-hidden border border-border shadow-card transition-all duration-500 hover:scale-[1.03] hover:border-primary/60 hover:shadow-[0_20px_60px_-20px_rgba(232,0,13,.6)]" style={{ borderRadius: 24, height: 380 }}>
                 <img src={s.img} alt={s.title} loading="lazy" className="absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-110" />
                 <div className="absolute inset-0" style={{ background: "linear-gradient(180deg, transparent 30%, rgba(0,0,0,0.55) 60%, rgba(120,0,0,0.85) 100%)" }} />
                 <div className="absolute inset-x-0 bottom-0 p-7 transition-transform duration-500 group-hover:-translate-y-2">
@@ -216,7 +233,7 @@ function Home() {
               </article>
             ))}
           </div>
-          <div className="text-center mt-10">
+          <div className="text-center mt-16 md:mt-20">
             <Link to="/servicios" className="btn-pill btn-pill-outline">Ver más <ArrowRight className="h-4 w-4" /></Link>
           </div>
         </div>
@@ -270,13 +287,8 @@ function Home() {
               <div
                 key={p.name}
                 data-fx="card"
-                className={`relative shrink-0 snap-start w-[80%] sm:w-[55%] lg:w-auto p-7 flex flex-col ${p.highlight ? "conic-border lg:scale-105 z-10" : ""}`}
-                style={{
-                  borderRadius: 24,
-                  background: p.highlight ? "rgba(20,5,5,0.85)" : "rgba(13,13,13,0.78)",
-                  backdropFilter: "blur(20px)",
-                  border: p.highlight ? "1px solid transparent" : "1px solid rgba(255,255,255,0.08)",
-                }}
+                className={`glass relative shrink-0 snap-start w-[80%] sm:w-[55%] lg:w-auto p-7 flex flex-col ${p.highlight ? "conic-border lg:scale-105 z-10" : ""}`}
+                style={{ borderRadius: 24 }}
               >
                 {p.highlight && (
                   <span className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 rounded-full bg-gradient-primary text-primary-foreground font-heading uppercase text-[10px] tracking-widest shadow-glow">
@@ -350,7 +362,7 @@ function Home() {
             </button>
           ))}
         </div>
-        <div className="text-center mt-10">
+        <div className="text-center mt-16 md:mt-20">
           <Link to="/tienda" className="btn-pill btn-pill-outline"><ShoppingBag className="h-4 w-4" /> Ver más productos</Link>
         </div>
       </section>
