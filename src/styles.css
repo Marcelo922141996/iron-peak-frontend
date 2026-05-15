@@ -2,15 +2,15 @@
 @source "../src";
 @import "tw-animate-css";
 
-@import url('https://fonts.googleapis.com/css2?family=Anton&family=Bebas+Neue&family=Russo+One&family=Rajdhani:wght@400;500;600;700&family=Barlow+Condensed:wght@300;400;500;600;700;800&family=Outfit:wght@300;400;500;600;700;800&family=Share+Tech+Mono&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Teko:wght@400;500;600;700&family=Saira+Condensed:wght@400;500;600;700;800&family=Saira:wght@300;400;500;600;700;800&family=Share+Tech+Mono&display=swap');
 
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
-  --font-display: "Anton", "Russo One", "Barlow Condensed", system-ui, sans-serif;
-  --font-heading: "Rajdhani", "Barlow Condensed", system-ui, sans-serif;
-  --font-sans: "Outfit", "Rajdhani", system-ui, sans-serif;
-  --font-bebas: "Bebas Neue", "Anton", system-ui, sans-serif;
+  --font-display: "Teko", "Bebas Neue", system-ui, sans-serif;
+  --font-heading: "Saira Condensed", "Teko", system-ui, sans-serif;
+  --font-sans: "Saira", "Saira Condensed", system-ui, sans-serif;
+  --font-bebas: "Bebas Neue", "Teko", system-ui, sans-serif;
   --font-mono-tech: "Share Tech Mono", ui-monospace, monospace;
 
   --radius-sm: calc(var(--radius) - 4px);
@@ -45,6 +45,55 @@
 :root {
   --radius: 0.25rem;
 
+  /* Iron Gym — LIGHT mode (default) */
+  --background: oklch(0.98 0.003 25);
+  --foreground: oklch(0.16 0.01 25);
+
+  --surface: oklch(0.96 0.005 25);
+  --surface-foreground: oklch(0.16 0.01 25);
+
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.16 0.01 25);
+
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.16 0.01 25);
+
+  --primary: oklch(0.58 0.24 25);
+  --primary-foreground: oklch(0.99 0 0);
+  --primary-glow: oklch(0.68 0.26 25);
+
+  --secondary: oklch(0.94 0.005 25);
+  --secondary-foreground: oklch(0.16 0.01 25);
+
+  --muted: oklch(0.94 0.005 25);
+  --muted-foreground: oklch(0.45 0.01 25);
+
+  --accent: oklch(0.58 0.24 25);
+  --accent-foreground: oklch(0.99 0 0);
+
+  --destructive: oklch(0.6 0.25 25);
+  --destructive-foreground: oklch(0.98 0 0);
+
+  --border: oklch(0.9 0.005 25);
+  --input: oklch(0.93 0.005 25);
+  --ring: oklch(0.58 0.24 25);
+
+  --gradient-hero: linear-gradient(135deg, oklch(0.95 0.005 25) 0%, oklch(0.88 0.04 25) 60%, oklch(0.6 0.18 25) 100%);
+  --gradient-primary: linear-gradient(135deg, var(--primary), var(--primary-glow));
+  --gradient-overlay: linear-gradient(180deg, oklch(0.98 0.003 25 / 0.3) 0%, oklch(0.98 0.003 25 / 0.95) 100%);
+  --shadow-glow: 0 0 40px -8px oklch(0.58 0.24 25 / 0.45);
+  --shadow-card: 0 10px 40px -10px oklch(0 0 0 / 0.18);
+
+  /* glass tokens (light) */
+  --glass-bg: rgba(255, 255, 255, 0.72);
+  --glass-border: rgba(232, 0, 13, 0.18);
+  --glass-soft-bg: rgba(255, 255, 255, 0.55);
+  --glass-soft-border: rgba(0, 0, 0, 0.08);
+  --hero-overlay-from: rgba(255,255,255,0.85);
+  --hero-overlay-to: rgba(255,255,255,0.2);
+}
+
+.dark {
   /* Iron Gym brand: black + intense red */
   --background: oklch(0.08 0.005 0);
   --foreground: oklch(0.98 0 0);
@@ -83,11 +132,13 @@
   --gradient-overlay: linear-gradient(180deg, oklch(0.08 0.005 0 / 0.3) 0%, oklch(0.08 0.005 0 / 0.95) 100%);
   --shadow-glow: 0 0 40px -8px oklch(0.58 0.24 25 / 0.6);
   --shadow-card: 0 10px 40px -10px oklch(0 0 0 / 0.6);
-}
 
-.dark {
-  --background: oklch(0.08 0.005 0);
-  --foreground: oklch(0.98 0 0);
+  --glass-bg: rgba(13, 13, 13, 0.78);
+  --glass-border: rgba(232, 0, 13, 0.20);
+  --glass-soft-bg: rgba(20, 20, 20, 0.55);
+  --glass-soft-border: rgba(255, 255, 255, 0.08);
+  --hero-overlay-from: rgba(0,0,0,0.95);
+  --hero-overlay-to: rgba(0,0,0,0.30);
 }
 
 @layer base {
@@ -121,10 +172,10 @@
 
   /* Glassmorphism con tinte rojo Iron Gym */
   .glass {
-    background: rgba(13, 13, 13, 0.78);
+    background: var(--glass-bg);
     backdrop-filter: blur(20px) saturate(140%);
     -webkit-backdrop-filter: blur(20px) saturate(140%);
-    border: 1px solid rgba(232, 0, 13, 0.2);
+    border: 1px solid var(--glass-border);
     border-radius: 20px;
     transition: transform .35s ease, border-color .35s ease, box-shadow .35s ease, background .35s ease;
   }
@@ -134,20 +185,20 @@
     box-shadow: 0 18px 60px -20px rgba(232, 0, 13, 0.55), 0 0 0 1px rgba(232, 0, 13, 0.25) inset;
   }
   .glass-soft {
-    background: rgba(20, 20, 20, 0.55);
+    background: var(--glass-soft-bg);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    border: 1px solid var(--glass-soft-border);
     border-radius: 14px;
   }
   .glass-pill {
     display: inline-flex; align-items: center; gap: .5rem;
     padding: .55rem 1.1rem;
     border-radius: 9999px;
-    background: rgba(20, 20, 20, 0.55);
+    background: var(--glass-soft-bg);
     backdrop-filter: blur(14px);
     -webkit-backdrop-filter: blur(14px);
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    border: 1px solid var(--glass-soft-border);
     color: var(--color-foreground);
     font-family: var(--font-heading);
     text-transform: uppercase; letter-spacing: .12em; font-size: .72rem;
@@ -181,9 +232,9 @@
   }
   .btn-pill-outline:hover { background: var(--gradient-primary); color: var(--color-primary-foreground); border-color: transparent; box-shadow: var(--shadow-glow); }
   .btn-pill-glass {
-    background: rgba(20,20,20,.55);
+    background: var(--glass-soft-bg);
     backdrop-filter: blur(14px);
-    border: 1px solid rgba(255,255,255,.1);
+    border: 1px solid var(--glass-soft-border);
     color: var(--color-foreground);
   }
   .btn-pill-glass:hover { border-color: rgba(232,0,13,.55); color: var(--color-primary); }
