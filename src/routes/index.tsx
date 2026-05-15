@@ -282,12 +282,12 @@ function Home() {
             <p className="font-heading uppercase tracking-[0.3em] text-primary text-sm">Planes</p>
             <h2 className="font-bebas mt-3" style={{ fontSize: "clamp(2.5rem, 6.5vw, 5rem)" }}>ELIGE TU CAMINO</h2>
           </div>
-          <div className="flex gap-5 lg:grid lg:grid-cols-5 overflow-x-auto no-scrollbar pb-4 lg:pb-0 -mx-4 px-4 lg:mx-0 lg:px-0 snap-x snap-mandatory">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-5">
             {PLANES.map((p) => (
               <div
                 key={p.name}
                 data-fx="card"
-                className={`glass relative shrink-0 snap-start w-[80%] sm:w-[55%] lg:w-auto p-7 flex flex-col ${p.highlight ? "conic-border lg:scale-105 z-10" : ""}`}
+                className={`glass relative w-full p-7 flex flex-col ${p.highlight ? "conic-border lg:scale-105 z-10" : ""}`}
                 style={{ borderRadius: 24 }}
               >
                 {p.highlight && (
@@ -442,17 +442,17 @@ function Home() {
         <div className="pointer-events-none absolute inset-0" style={{ background: "radial-gradient(60% 50% at 30% 50%, rgba(232,0,13,.18), transparent 70%)" }} />
         <div className="relative mx-auto max-w-7xl px-4 lg:px-8 py-24 grid lg:grid-cols-2 gap-12 items-center">
           <div>
-            <p className="font-heading uppercase tracking-[0.3em] text-primary text-sm flex items-center gap-2"><CalendarDays className="h-4 w-4" /> Clase de prueba</p>
-            <h2 className="font-bebas mt-3 leading-[0.95]" style={{ fontSize: "clamp(2.5rem, 6vw, 4.5rem)" }}>
-              RESERVA TU<br /><span className="text-primary">CLASE GRATIS</span>
+            <p className="font-heading uppercase tracking-[0.3em] text-primary text-sm flex items-center gap-2"><CalendarDays className="h-4 w-4" /> Reserva tu clase</p>
+            <h2 className="font-bebas mt-3 leading-[0.95] text-white" style={{ fontSize: "clamp(2.5rem, 6vw, 4.5rem)" }}>
+              AGENDA TU<br /><span className="text-primary">PRÓXIMA CLASE</span>
             </h2>
-            <p className="text-muted-foreground mt-4 max-w-md">
-              Elige sede, día y hora. Te confirmamos por WhatsApp y vienes a entrenar sin compromiso.
+            <p className="text-white/80 mt-4 max-w-md">
+              Elige sede, día y hora. Te confirmamos por WhatsApp para que vengas a entrenar sin contratiempos.
             </p>
-            <ul className="mt-6 space-y-3 text-sm">
+            <ul className="mt-6 space-y-3 text-sm text-white/90">
               <li className="flex gap-2"><Check className="h-5 w-5 text-primary mt-0.5" /> Acceso completo a la sede</li>
-              <li className="flex gap-2"><Check className="h-5 w-5 text-primary mt-0.5" /> Asesoría inicial gratis</li>
-              <li className="flex gap-2"><Check className="h-5 w-5 text-primary mt-0.5" /> Sin tarjeta, sin permanencia</li>
+              <li className="flex gap-2"><Check className="h-5 w-5 text-primary mt-0.5" /> Asesoría inicial personalizada</li>
+              <li className="flex gap-2"><Check className="h-5 w-5 text-primary mt-0.5" /> Reserva rápida vía WhatsApp</li>
             </ul>
           </div>
           <div className="glass !p-6 sm:!p-8" style={{ borderRadius: 24, background: "rgba(0,0,0,0.7)" }}>
