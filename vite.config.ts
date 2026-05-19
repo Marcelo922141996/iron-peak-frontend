@@ -3,9 +3,7 @@ import { nitro } from "nitro/vite";
 
 export default defineConfig({
   cloudflare: false,
-  tanstackStart: {
-    server: { entry: "server" },
-  },
+  tanstackStart: {},
   vite: {
     plugins: [
       nitro({
