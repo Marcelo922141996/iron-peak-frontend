@@ -66,7 +66,7 @@ function Page() {
             ))}
           </div>
           <div className="text-center mt-12">
-            <Link to="/planes" className="inline-flex items-center gap-2 rounded-sm bg-gradient-primary px-7 py-4 font-heading uppercase tracking-wider text-primary-foreground shadow-glow hover:scale-105 transition">
+            <Link to="/" hash="planes" className="inline-flex items-center gap-2 rounded-sm bg-gradient-primary px-7 py-4 font-heading uppercase tracking-wider text-primary-foreground shadow-glow hover:scale-105 transition">
               Ver planes <ArrowRight className="h-5 w-5" />
             </Link>
           </div>

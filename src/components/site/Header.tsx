@@ -6,12 +6,9 @@ const NAV = [
   { to: "/", label: "Inicio" },
   { to: "/nosotros", label: "Nosotros" },
   { to: "/servicios", label: "Servicios" },
-  { to: "/sedes", label: "Sedes" },
-  { to: "/planes", label: "Planes" },
   { to: "/tienda", label: "Tienda" },
   { to: "/galeria", label: "Galería" },
   { to: "/blog", label: "Blog" },
-  { to: "/contacto", label: "Contacto" },
 ] as const;
 
 export function Header() {
@@ -60,7 +57,8 @@ export function Header() {
             {theme === "dark" ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
           </button>
           <Link
-            to="/planes"
+            to="/"
+            hash="planes"
             className="hidden lg:inline-flex items-center rounded-full bg-gradient-primary px-5 py-2.5 font-heading text-sm uppercase tracking-wider text-primary-foreground shadow-glow transition hover:scale-105"
           >
             Inscríbete
