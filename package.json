@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "bun --bun vite dev",
-    "build": "bun --bun vite build",
+    "build": "vite build",
     "start": "bun run .output/server/index.mjs",
     "build:dev": "vite build --mode development",
     "preview": "vite preview",
