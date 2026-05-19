@@ -167,7 +167,7 @@ function Home() {
           </p>
           <div className="mt-10 flex flex-wrap gap-4">
             <a href="#planes" className="btn-pill btn-pill-primary"><Flame className="h-5 w-5" /> Inscríbete ahora</a>
-            <Link to="/sedes" className="btn-pill btn-pill-glass"><MapPin className="h-5 w-5" /> Encuentra tu sede</Link>
+            <a href="#sedes" className="btn-pill btn-pill-glass"><MapPin className="h-5 w-5" /> Encuentra tu sede</a>
           </div>
         </div>
       </section>
@@ -240,7 +240,7 @@ function Home() {
       </section>
 
       {/* SEDES */}
-      <section className="mx-auto max-w-7xl px-4 lg:px-8 py-24">
+      <section id="sedes" className="mx-auto max-w-7xl px-4 lg:px-8 py-24 scroll-mt-20">
         <div className="text-center mb-12">
           <p className="font-heading uppercase tracking-[0.3em] text-primary text-sm">Nuestras sedes</p>
           <h2 className="font-bebas mt-3" style={{ fontSize: "clamp(2.5rem, 6.5vw, 5rem)" }}>5 SEDES EN JAÉN</h2>
@@ -258,18 +258,26 @@ function Home() {
             </button>
           ))}
         </div>
-        <div ref={sedeDetailRef} key={sedeActiva.slug} className="glass p-8 lg:p-10 max-w-4xl mx-auto" data-fx="card">
-          <div className="grid md:grid-cols-2 gap-8">
+        <div ref={sedeDetailRef} key={sedeActiva.slug} className="glass p-6 lg:p-10 max-w-6xl mx-auto" data-fx="card">
+          <div className="grid lg:grid-cols-2 gap-8 items-center">
+            <div className="overflow-hidden rounded-2xl border border-border">
+              <iframe
+                title={sedeActiva.name}
+                src={`https://www.google.com/maps?q=${encodeURIComponent(sedeActiva.address + ", Jaén, Perú")}&output=embed`}
+                className="w-full h-72 lg:h-80 border-0"
+                loading="lazy"
+              />
+            </div>
             <div>
               <p className="font-techmono text-xs text-primary uppercase tracking-widest">{sedeActiva.note}</p>
               <h3 className="font-bebas mt-2" style={{ fontSize: "2.5rem" }}>{sedeActiva.name}</h3>
               <p className="text-muted-foreground mt-3 flex items-start gap-2"><MapPin className="h-4 w-4 text-primary mt-1 shrink-0" /> {sedeActiva.address}</p>
               <p className="text-muted-foreground mt-2 flex items-start gap-2"><Clock className="h-4 w-4 text-primary mt-1 shrink-0" /> {sedeActiva.horario}</p>
               <p className="text-muted-foreground mt-2 flex items-start gap-2"><Phone className="h-4 w-4 text-primary mt-1 shrink-0" /> +51 {sedeActiva.whatsapp}</p>
-            </div>
-            <div className="flex flex-col gap-3 justify-center">
-              <a href={`https://wa.me/51${sedeActiva.whatsapp}?text=${encodeURIComponent(`Hola Iron Gym ${sedeActiva.name}, quiero más información.`)}`} target="_blank" rel="noreferrer" className="btn-pill btn-pill-primary"><MessageCircle className="h-4 w-4" /> WhatsApp sede</a>
-              <Link to="/sedes" hash={sedeActiva.slug} className="btn-pill btn-pill-glass">Ver detalle completo <ArrowRight className="h-4 w-4" /></Link>
+              <div className="mt-5 flex flex-wrap gap-3">
+                <a href={`https://wa.me/51${sedeActiva.whatsapp}?text=${encodeURIComponent(`Hola Iron Gym ${sedeActiva.name}, quiero más información.`)}`} target="_blank" rel="noreferrer" className="btn-pill btn-pill-primary"><MessageCircle className="h-4 w-4" /> WhatsApp sede</a>
+                <a href={`https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(sedeActiva.address + ", Jaén, Perú")}`} target="_blank" rel="noreferrer" className="btn-pill btn-pill-glass">Cómo llegar <ArrowRight className="h-4 w-4" /></a>
+              </div>
             </div>
           </div>
         </div>
@@ -287,7 +295,7 @@ function Home() {
               <div
                 key={p.name}
                 data-fx="card"
-                className={`glass relative w-full p-7 flex flex-col ${p.highlight ? "conic-border lg:scale-105 z-10" : ""}`}
+                className={`glass relative w-full p-7 flex flex-col ${p.highlight ? "lg:scale-105 z-10 border-primary/60" : ""}`}
                 style={{ borderRadius: 24 }}
               >
                 {p.highlight && (
@@ -310,9 +318,6 @@ function Home() {
                 </a>
               </div>
             ))}
-          </div>
-          <div className="text-center mt-10">
-            <Link to="/planes" className="btn-pill btn-pill-outline">Ver todos los planes <ArrowRight className="h-4 w-4" /></Link>
           </div>
         </div>
       </section>

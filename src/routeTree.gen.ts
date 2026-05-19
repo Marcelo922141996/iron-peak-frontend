@@ -11,11 +11,8 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as TiendaRouteImport } from './routes/tienda'
 import { Route as ServiciosRouteImport } from './routes/servicios'
-import { Route as SedesRouteImport } from './routes/sedes'
-import { Route as PlanesRouteImport } from './routes/planes'
 import { Route as NosotrosRouteImport } from './routes/nosotros'
 import { Route as GaleriaRouteImport } from './routes/galeria'
-import { Route as ContactoRouteImport } from './routes/contacto'
 import { Route as BlogRouteImport } from './routes/blog'
 import { Route as IndexRouteImport } from './routes/index'
 
@@ -29,16 +26,6 @@ const ServiciosRoute = ServiciosRouteImport.update({
   path: '/servicios',
   getParentRoute: () => rootRouteImport,
 } as any)
-const SedesRoute = SedesRouteImport.update({
-  id: '/sedes',
-  path: '/sedes',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const PlanesRoute = PlanesRouteImport.update({
-  id: '/planes',
-  path: '/planes',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const NosotrosRoute = NosotrosRouteImport.update({
   id: '/nosotros',
   path: '/nosotros',
@@ -47,11 +34,6 @@ const NosotrosRoute = NosotrosRouteImport.update({
 const GaleriaRoute = GaleriaRouteImport.update({
   id: '/galeria',
   path: '/galeria',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ContactoRoute = ContactoRouteImport.update({
-  id: '/contacto',
-  path: '/contacto',
   getParentRoute: () => rootRouteImport,
 } as any)
 const BlogRoute = BlogRouteImport.update({
@@ -68,22 +50,16 @@ const IndexRoute = IndexRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/blog': typeof BlogRoute
-  '/contacto': typeof ContactoRoute
   '/galeria': typeof GaleriaRoute
   '/nosotros': typeof NosotrosRoute
-  '/planes': typeof PlanesRoute
-  '/sedes': typeof SedesRoute
   '/servicios': typeof ServiciosRoute
   '/tienda': typeof TiendaRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/blog': typeof BlogRoute
-  '/contacto': typeof ContactoRoute
   '/galeria': typeof GaleriaRoute
   '/nosotros': typeof NosotrosRoute
-  '/planes': typeof PlanesRoute
-  '/sedes': typeof SedesRoute
   '/servicios': typeof ServiciosRoute
   '/tienda': typeof TiendaRoute
 }
@@ -91,46 +67,22 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/blog': typeof BlogRoute
-  '/contacto': typeof ContactoRoute
   '/galeria': typeof GaleriaRoute
   '/nosotros': typeof NosotrosRoute
-  '/planes': typeof PlanesRoute
-  '/sedes': typeof SedesRoute
   '/servicios': typeof ServiciosRoute
   '/tienda': typeof TiendaRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths:
-    | '/'
-    | '/blog'
-    | '/contacto'
-    | '/galeria'
-    | '/nosotros'
-    | '/planes'
-    | '/sedes'
-    | '/servicios'
-    | '/tienda'
+  fullPaths: '/' | '/blog' | '/galeria' | '/nosotros' | '/servicios' | '/tienda'
   fileRoutesByTo: FileRoutesByTo
-  to:
-    | '/'
-    | '/blog'
-    | '/contacto'
-    | '/galeria'
-    | '/nosotros'
-    | '/planes'
-    | '/sedes'
-    | '/servicios'
-    | '/tienda'
+  to: '/' | '/blog' | '/galeria' | '/nosotros' | '/servicios' | '/tienda'
   id:
     | '__root__'
     | '/'
     | '/blog'
-    | '/contacto'
     | '/galeria'
     | '/nosotros'
-    | '/planes'
-    | '/sedes'
     | '/servicios'
     | '/tienda'
   fileRoutesById: FileRoutesById
@@ -138,11 +90,8 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   BlogRoute: typeof BlogRoute
-  ContactoRoute: typeof ContactoRoute
   GaleriaRoute: typeof GaleriaRoute
   NosotrosRoute: typeof NosotrosRoute
-  PlanesRoute: typeof PlanesRoute
-  SedesRoute: typeof SedesRoute
   ServiciosRoute: typeof ServiciosRoute
   TiendaRoute: typeof TiendaRoute
 }
@@ -163,20 +112,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ServiciosRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/sedes': {
-      id: '/sedes'
-      path: '/sedes'
-      fullPath: '/sedes'
-      preLoaderRoute: typeof SedesRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/planes': {
-      id: '/planes'
-      path: '/planes'
-      fullPath: '/planes'
-      preLoaderRoute: typeof PlanesRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/nosotros': {
       id: '/nosotros'
       path: '/nosotros'
@@ -189,13 +124,6 @@ declare module '@tanstack/react-router' {
       path: '/galeria'
       fullPath: '/galeria'
       preLoaderRoute: typeof GaleriaRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/contacto': {
-      id: '/contacto'
-      path: '/contacto'
-      fullPath: '/contacto'
-      preLoaderRoute: typeof ContactoRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/blog': {
@@ -218,14 +146,21 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   BlogRoute: BlogRoute,
-  ContactoRoute: ContactoRoute,
   GaleriaRoute: GaleriaRoute,
   NosotrosRoute: NosotrosRoute,
-  PlanesRoute: PlanesRoute,
-  SedesRoute: SedesRoute,
   ServiciosRoute: ServiciosRoute,
   TiendaRoute: TiendaRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}

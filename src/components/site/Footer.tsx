@@ -21,7 +21,7 @@ export function Footer() {
           <h4 className="font-heading uppercase text-sm tracking-widest mb-4">Sedes</h4>
           <ul className="space-y-2 text-sm text-muted-foreground">
             {SEDES.map((s) => (
-              <li key={s.slug}><Link to="/sedes" className="hover:text-primary transition">{s.name}</Link></li>
+              <li key={s.slug}><Link to="/" hash="sedes" className="hover:text-primary transition">{s.name}</Link></li>
             ))}
           </ul>
         </div>
@@ -30,7 +30,7 @@ export function Footer() {
           <ul className="space-y-2 text-sm text-muted-foreground">
             <li><Link to="/nosotros" className="hover:text-primary transition">Nosotros</Link></li>
             <li><Link to="/servicios" className="hover:text-primary transition">Servicios</Link></li>
-            <li><Link to="/planes" className="hover:text-primary transition">Planes</Link></li>
+            <li><Link to="/" hash="planes" className="hover:text-primary transition">Planes</Link></li>
             <li><Link to="/tienda" className="hover:text-primary transition">Tienda</Link></li>
             <li><Link to="/blog" className="hover:text-primary transition">Blog</Link></li>
           </ul>
