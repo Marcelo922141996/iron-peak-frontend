@@ -9,6 +9,8 @@ import { InstagramEmbedGrid } from "@/components/site/InstagramEmbedGrid";
 import { CounterStat } from "@/components/site/CounterStat";
 import { InfiniteMarquee } from "@/components/site/InfiniteMarquee";
 import { TestimonialsCarousel } from "@/components/site/TestimonialsCarousel";
+import { ProductImageCarousel } from "@/components/site/ProductImageCarousel";
+import { useCart } from "@/lib/cart-context";
 import { HeroFog } from "@/components/three/HeroFog";
 import heroImg from "@/assets/hero.jpg";
 import musculacionImg from "@/assets/musculacion.jpg";
@@ -20,7 +22,7 @@ import nutricionImg from "@/assets/nutricion.jpg";
 import {
   Dumbbell, HeartPulse, Activity, Users, Apple, UserCheck,
   Clock, MapPin, Star, Trophy, Flame, Check, ArrowRight,
-  Instagram, Package, MessageCircle, ShoppingBag, CalendarDays, Phone,
+  Instagram, MessageCircle, ShoppingBag, CalendarDays, Phone, Plus,
 } from "lucide-react";
 import { SEDES, PLANES, SITE, PRODUCTS, DIAS, SCHEDULE, TRANSFORMACIONES, INSTAGRAM_POST_URLS, type Objetivo, type Product } from "@/lib/site-data";
 
