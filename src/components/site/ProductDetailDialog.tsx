@@ -1,12 +1,16 @@
 import { useState } from "react";
 import { Dialog, DialogContent, DialogTitle, DialogDescription } from "@/components/ui/dialog";
-import { MessageCircle, Truck, Store, Star, ShieldCheck, Package } from "lucide-react";
+import { MessageCircle, Truck, Store, Star, ShieldCheck, Package, ShoppingBag } from "lucide-react";
 import type { Product } from "@/lib/site-data";
 import { SITE } from "@/lib/site-data";
+import { useCart } from "@/lib/cart-context";
+import { pad3 } from "./ProductImageCarousel";
 
 export function ProductDetailDialog({ product, open, onOpenChange }: { product: Product | null; open: boolean; onOpenChange: (v: boolean) => void }) {
   const [idx, setIdx] = useState(0);
+  const { add } = useCart();
   if (!product) return null;
+  const imgs = pad3(product.images, product.cat);
   const wa = `https://wa.me/51${SITE.whatsapp}?text=${encodeURIComponent(`Hola Iron Gym, quiero comprar "${product.name}" (S/${product.price}). ¿Me confirman disponibilidad y envío?`)}`;
   const avg = product.comments.length
     ? (product.comments.reduce((a, c) => a + c.rating, 0) / product.comments.length).toFixed(1)
@@ -17,22 +21,20 @@ export function ProductDetailDialog({ product, open, onOpenChange }: { product: 
         <div className="grid md:grid-cols-2">
           {/* Imágenes */}
           <div className="bg-gradient-hero p-4 md:p-6">
-            <div className="aspect-square w-full overflow-hidden border border-border bg-card grid place-items-center">
-              {product.images[idx] ? (
-                <img src={product.images[idx]} alt={product.name} className="h-full w-full object-cover" onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = "none"; }} />
+            <div className="aspect-square w-full overflow-hidden border border-border bg-card grid place-items-center relative">
+              {imgs[idx] ? (
+                <img key={idx} src={imgs[idx]} alt={product.name} className="h-full w-full object-cover animate-pi-zoom" onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = "none"; }} />
               ) : (
                 <Package className="h-24 w-24 text-primary/40" strokeWidth={1} />
               )}
             </div>
-            {product.images.length > 1 && (
-              <div className="mt-3 grid grid-cols-4 gap-2">
-                {product.images.map((src, i) => (
-                  <button key={i} onClick={() => setIdx(i)} className={`aspect-square overflow-hidden border ${i === idx ? "border-primary" : "border-border"}`}>
-                    <img src={src} alt="" className="h-full w-full object-cover" />
-                  </button>
-                ))}
-              </div>
-            )}
+            <div className="mt-3 grid grid-cols-3 gap-2">
+              {imgs.map((src, i) => (
+                <button key={i} onClick={() => setIdx(i)} className={`aspect-square overflow-hidden border ${i === idx ? "border-primary" : "border-border"}`}>
+                  <img src={src} alt="" className="h-full w-full object-cover" />
+                </button>
+              ))}
+            </div>
           </div>
 
           {/* Detalle */}
@@ -79,9 +81,17 @@ export function ProductDetailDialog({ product, open, onOpenChange }: { product: 
               </div>
             </div>
 
-            <a href={wa} target="_blank" rel="noreferrer" className="mt-6 inline-flex items-center justify-center gap-2 py-4 font-heading uppercase tracking-wider text-sm bg-gradient-primary text-primary-foreground shadow-glow hover:scale-[1.02] transition">
-              <MessageCircle className="h-4 w-4" /> Pedir por WhatsApp
-            </a>
+            <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <button
+                onClick={() => { add(product, 1); onOpenChange(false); }}
+                className="inline-flex items-center justify-center gap-2 py-4 font-heading uppercase tracking-wider text-sm border border-primary/50 text-primary hover:bg-primary/10 transition rounded"
+              >
+                <ShoppingBag className="h-4 w-4" /> Agregar a canasta
+              </button>
+              <a href={wa} target="_blank" rel="noreferrer" className="inline-flex items-center justify-center gap-2 py-4 font-heading uppercase tracking-wider text-sm bg-gradient-primary text-primary-foreground shadow-glow hover:scale-[1.02] transition rounded">
+                <MessageCircle className="h-4 w-4" /> Comprar ahora
+              </a>
+            </div>
 
             {/* Comentarios */}
             <div className="mt-7">
