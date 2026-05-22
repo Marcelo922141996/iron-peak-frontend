@@ -265,4 +265,11 @@
   /* Scrollbar oculto en filas horizontales */
   .no-scrollbar::-webkit-scrollbar { display: none; }
   .no-scrollbar { scrollbar-width: none; }
+
+  /* Zoom cinemático para imágenes de producto */
+  @keyframes pi-zoom {
+    0%   { transform: scale(1.0); }
+    100% { transform: scale(1.12); }
+  }
+  .animate-pi-zoom { animation: pi-zoom 3.2s ease-out both; }
 }

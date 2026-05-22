@@ -9,6 +9,8 @@ import { InstagramEmbedGrid } from "@/components/site/InstagramEmbedGrid";
 import { CounterStat } from "@/components/site/CounterStat";
 import { InfiniteMarquee } from "@/components/site/InfiniteMarquee";
 import { TestimonialsCarousel } from "@/components/site/TestimonialsCarousel";
+import { ProductImageCarousel } from "@/components/site/ProductImageCarousel";
+import { useCart } from "@/lib/cart-context";
 import { HeroFog } from "@/components/three/HeroFog";
 import heroImg from "@/assets/hero.jpg";
 import musculacionImg from "@/assets/musculacion.jpg";
@@ -20,7 +22,7 @@ import nutricionImg from "@/assets/nutricion.jpg";
 import {
   Dumbbell, HeartPulse, Activity, Users, Apple, UserCheck,
   Clock, MapPin, Star, Trophy, Flame, Check, ArrowRight,
-  Instagram, Package, MessageCircle, ShoppingBag, CalendarDays, Phone,
+  Instagram, MessageCircle, ShoppingBag, CalendarDays, Phone, Plus,
 } from "lucide-react";
 import { SEDES, PLANES, SITE, PRODUCTS, DIAS, SCHEDULE, TRANSFORMACIONES, INSTAGRAM_POST_URLS, type Objetivo, type Product } from "@/lib/site-data";
 
@@ -55,11 +57,11 @@ const REASONS = [
 ];
 
 const TESTIMONIOS = [
-  { name: "Carlos M.", role: "Socio · Sede Principal", text: "El mejor gym de Jaén. Maquinaria nueva, ambiente top y los coaches te empujan a más." },
-  { name: "Lucía R.", role: "Socia · Bolívar Plaza", text: "Bajé 12 kg en 4 meses con el plan nutricional. Hoy entreno feliz." },
-  { name: "Diego T.", role: "Socio · Los Robles", text: "Llevo 2 años aquí. Es el ambiente, la gente y los precios. No cambio Iron Gym por nada." },
-  { name: "Ana P.", role: "Socia · Pueblo Libre", text: "Los coaches son lo máximo, la sala siempre limpia y con buena energía." },
-  { name: "Renato S.", role: "Socio · Alfredo Bastos", text: "Subí 14 kg de músculo en un año con el personal trainer." },
+  { name: "Carlos M.", role: "Socio · Sede Principal", text: "El mejor gym de Jaén. Maquinaria nueva, ambiente top y los coaches te empujan a más.", img: "https://images.unsplash.com/photo-1531123897727-8f129e1688ce?w=400&q=80" },
+  { name: "Lucía R.", role: "Socia · Bolívar Plaza", text: "Bajé 12 kg en 4 meses con el plan nutricional. Hoy entreno feliz.", img: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=400&q=80" },
+  { name: "Diego T.", role: "Socio · Los Robles", text: "Llevo 2 años aquí. Es el ambiente, la gente y los precios. No cambio Iron Gym por nada.", img: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&q=80" },
+  { name: "Ana P.", role: "Socia · Pueblo Libre", text: "Los coaches son lo máximo, la sala siempre limpia y con buena energía.", img: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&q=80" },
+  { name: "Renato S.", role: "Socio · Alfredo Bastos", text: "Subí 14 kg de músculo en un año con el personal trainer.", img: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80" },
 ];
 
 const OBJETIVOS: ("Todos" | Objetivo)[] = ["Todos", "Pérdida de peso", "Ganancia muscular", "Definición"];
@@ -67,6 +69,34 @@ const TIENDA_CATS = ["Todos", "Suplemento", "Indumentaria", "Accesorio", "Nutric
 
 function planWaHref(planName: string) {
   return `https://wa.me/51${SITE.whatsapp}?text=${encodeURIComponent(`Hola Iron Gym, quiero inscribirme al plan ${planName}. ¿Me dan más información?`)}`;
+}
+
+function TiendaCard({ p, onOpen }: { p: Product; onOpen: () => void }) {
+  const { add } = useCart();
+  return (
+    <div className="tienda-card glass !p-0 overflow-hidden flex flex-col group" data-fx="card">
+      <button onClick={onOpen} className="aspect-square bg-gradient-hero relative overflow-hidden block w-full text-left">
+        <ProductImageCarousel images={p.images} cat={p.cat} alt={p.name} />
+        <div className="absolute inset-0 bg-primary/0 group-hover:bg-primary/10 transition duration-500 pointer-events-none" />
+        <span className="absolute top-3 left-3 z-10 px-2.5 py-1 rounded-full bg-black/60 backdrop-blur text-[10px] font-techmono uppercase tracking-widest text-white/80 border border-white/10">{p.cat}</span>
+      </button>
+      <div className="p-4 sm:p-5 flex flex-col flex-1">
+        <button onClick={onOpen} className="text-left">
+          <h3 className="font-heading text-sm sm:text-base uppercase">{p.name}</h3>
+          <p className="text-xs text-muted-foreground mt-1 line-clamp-2">{p.desc}</p>
+        </button>
+        <div className="mt-3 flex items-center justify-between gap-2">
+          <span className="font-bebas text-primary" style={{ fontSize: "1.4rem" }}>S/{p.price}</span>
+          <button
+            onClick={() => add(p, 1)}
+            className="inline-flex items-center gap-1 px-3 py-2 rounded-full bg-gradient-primary text-primary-foreground text-[10px] font-heading uppercase tracking-wider shadow-glow hover:scale-105 transition"
+          >
+            <Plus className="h-3 w-3" /> Agregar
+          </button>
+        </div>
+      </div>
+    </div>
+  );
 }
 
 function Home() {
@@ -336,35 +366,7 @@ function Home() {
         </div>
         <div ref={tiendaGridRef} className="grid grid-cols-2 lg:grid-cols-4 gap-5">
           {tiendaList.map((p) => (
-            <button
-              key={p.id}
-              onClick={() => setActiveProduct(p)}
-              className="tienda-card text-left glass !p-0 overflow-hidden flex flex-col group"
-              data-fx="card"
-            >
-              <div className="aspect-square bg-gradient-hero grid place-items-center relative overflow-hidden">
-                <Package className="h-20 w-20 text-primary/40" strokeWidth={1} />
-                {p.images[0] && (
-                  <img
-                    src={p.images[0]}
-                    alt={p.name}
-                    loading="lazy"
-                    onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = "none"; }}
-                    className="absolute inset-0 h-full w-full object-cover transition duration-500 group-hover:scale-110"
-                  />
-                )}
-                <div className="absolute inset-0 bg-primary/0 group-hover:bg-primary/10 transition duration-500" />
-                <span className="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-black/60 backdrop-blur text-[10px] font-techmono uppercase tracking-widest text-white/80 border border-white/10">{p.cat}</span>
-              </div>
-              <div className="p-5 flex flex-col flex-1">
-                <h3 className="font-heading text-base uppercase">{p.name}</h3>
-                <p className="text-xs text-muted-foreground mt-1 flex-1 line-clamp-2">{p.desc}</p>
-                <div className="mt-4 flex items-center justify-between gap-2">
-                  <span className="font-bebas text-primary" style={{ fontSize: "1.6rem" }}>S/{p.price}</span>
-                  <span className="btn-pill btn-pill-outline !py-2 !px-3 !text-[10px] transition group-hover:-translate-y-0.5">Ver detalle</span>
-                </div>
-              </div>
-            </button>
+            <TiendaCard key={p.id} p={p} onOpen={() => setActiveProduct(p)} />
           ))}
         </div>
         <div className="text-center mt-16 md:mt-20">
