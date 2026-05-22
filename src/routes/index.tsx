@@ -57,11 +57,11 @@ const REASONS = [
 ];
 
 const TESTIMONIOS = [
-  { name: "Carlos M.", role: "Socio · Sede Principal", text: "El mejor gym de Jaén. Maquinaria nueva, ambiente top y los coaches te empujan a más." },
-  { name: "Lucía R.", role: "Socia · Bolívar Plaza", text: "Bajé 12 kg en 4 meses con el plan nutricional. Hoy entreno feliz." },
-  { name: "Diego T.", role: "Socio · Los Robles", text: "Llevo 2 años aquí. Es el ambiente, la gente y los precios. No cambio Iron Gym por nada." },
-  { name: "Ana P.", role: "Socia · Pueblo Libre", text: "Los coaches son lo máximo, la sala siempre limpia y con buena energía." },
-  { name: "Renato S.", role: "Socio · Alfredo Bastos", text: "Subí 14 kg de músculo en un año con el personal trainer." },
+  { name: "Carlos M.", role: "Socio · Sede Principal", text: "El mejor gym de Jaén. Maquinaria nueva, ambiente top y los coaches te empujan a más.", img: "https://images.unsplash.com/photo-1531123897727-8f129e1688ce?w=400&q=80" },
+  { name: "Lucía R.", role: "Socia · Bolívar Plaza", text: "Bajé 12 kg en 4 meses con el plan nutricional. Hoy entreno feliz.", img: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=400&q=80" },
+  { name: "Diego T.", role: "Socio · Los Robles", text: "Llevo 2 años aquí. Es el ambiente, la gente y los precios. No cambio Iron Gym por nada.", img: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&q=80" },
+  { name: "Ana P.", role: "Socia · Pueblo Libre", text: "Los coaches son lo máximo, la sala siempre limpia y con buena energía.", img: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&q=80" },
+  { name: "Renato S.", role: "Socio · Alfredo Bastos", text: "Subí 14 kg de músculo en un año con el personal trainer.", img: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80" },
 ];
 
 const OBJETIVOS: ("Todos" | Objetivo)[] = ["Todos", "Pérdida de peso", "Ganancia muscular", "Definición"];
