@@ -338,35 +338,7 @@ function Home() {
         </div>
         <div ref={tiendaGridRef} className="grid grid-cols-2 lg:grid-cols-4 gap-5">
           {tiendaList.map((p) => (
-            <button
-              key={p.id}
-              onClick={() => setActiveProduct(p)}
-              className="tienda-card text-left glass !p-0 overflow-hidden flex flex-col group"
-              data-fx="card"
-            >
-              <div className="aspect-square bg-gradient-hero grid place-items-center relative overflow-hidden">
-                <Package className="h-20 w-20 text-primary/40" strokeWidth={1} />
-                {p.images[0] && (
-                  <img
-                    src={p.images[0]}
-                    alt={p.name}
-                    loading="lazy"
-                    onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = "none"; }}
-                    className="absolute inset-0 h-full w-full object-cover transition duration-500 group-hover:scale-110"
-                  />
-                )}
-                <div className="absolute inset-0 bg-primary/0 group-hover:bg-primary/10 transition duration-500" />
-                <span className="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-black/60 backdrop-blur text-[10px] font-techmono uppercase tracking-widest text-white/80 border border-white/10">{p.cat}</span>
-              </div>
-              <div className="p-5 flex flex-col flex-1">
-                <h3 className="font-heading text-base uppercase">{p.name}</h3>
-                <p className="text-xs text-muted-foreground mt-1 flex-1 line-clamp-2">{p.desc}</p>
-                <div className="mt-4 flex items-center justify-between gap-2">
-                  <span className="font-bebas text-primary" style={{ fontSize: "1.6rem" }}>S/{p.price}</span>
-                  <span className="btn-pill btn-pill-outline !py-2 !px-3 !text-[10px] transition group-hover:-translate-y-0.5">Ver detalle</span>
-                </div>
-              </div>
-            </button>
+            <TiendaCard key={p.id} p={p} onOpen={() => setActiveProduct(p)} />
           ))}
         </div>
         <div className="text-center mt-16 md:mt-20">
