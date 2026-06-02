@@ -1,16 +1,9 @@
 import { defineConfig } from "@lovable.dev/vite-tanstack-config";
-import { nitro } from "nitro/vite";
 
 export default defineConfig({
-  cloudflare: false,
   tanstackStart: {},
-  vite: {
-    plugins: [
-      nitro({
-        preset: "vercel",
-        vercel: { entryFormat: "node" },
-        output: { dir: ".output" },
-      }),
-    ],
+  nitro: {
+    preset: "vercel",
+    output: { dir: ".output" },
   },
 });
