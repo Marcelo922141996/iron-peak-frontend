@@ -1,23 +1,14 @@
+import { useState } from "react";
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sheet";
 import { useCart } from "@/lib/cart-context";
-import { Minus, Plus, Trash2, MessageCircle, ShoppingBag, Package } from "lucide-react";
-import { SITE } from "@/lib/site-data";
+import { Minus, Plus, Trash2, ArrowRight, ShoppingBag, Package } from "lucide-react";
+import { CheckoutDialog } from "./CheckoutDialog";
 
-const SHIPPING_JAEN = 5;
 const FREE_SHIP_OVER = 200;
 
 export function CartDrawer() {
   const { items, open, setOpen, setQty, remove, subtotal, clear } = useCart();
-  const shipping = items.length === 0 || subtotal >= FREE_SHIP_OVER ? 0 : SHIPPING_JAEN;
-  const total = subtotal + shipping;
-
-  const lines = items.map((i) => `• ${i.product.name} x${i.qty} — S/${(i.product.price * i.qty).toFixed(2)}`).join("\n");
-  const waMsg =
-    `Hola Iron Gym, quiero comprar:\n\n${lines}\n\n` +
-    `Subtotal: S/${subtotal.toFixed(2)}\n` +
-    (shipping > 0 ? `Envío en Jaén: S/${shipping.toFixed(2)}\n` : `Envío en Jaén: GRATIS\n`) +
-    `Total: S/${total.toFixed(2)}\n\n¿Me confirman disponibilidad y forma de pago?`;
-  const wa = `https://wa.me/51${SITE.whatsapp}?text=${encodeURIComponent(waMsg)}`;
+  const [checkoutOpen, setCheckoutOpen] = useState(false);
 
   return (
     <Sheet open={open} onOpenChange={setOpen}>
@@ -64,19 +55,22 @@ export function CartDrawer() {
 
             <div className="border-t border-border p-5 space-y-2">
               <div className="flex justify-between text-sm"><span className="text-muted-foreground">Subtotal</span><span>S/{subtotal.toFixed(2)}</span></div>
-              <div className="flex justify-between text-sm"><span className="text-muted-foreground">Envío en Jaén</span><span>{shipping === 0 ? "GRATIS" : `S/${shipping.toFixed(2)}`}</span></div>
               {subtotal > 0 && subtotal < FREE_SHIP_OVER && (
-                <p className="text-[11px] text-muted-foreground">Agrega S/{(FREE_SHIP_OVER - subtotal).toFixed(2)} más y el envío es gratis.</p>
+                <p className="text-[11px] text-muted-foreground">Agrega S/{(FREE_SHIP_OVER - subtotal).toFixed(2)} más y el envío en Jaén es gratis.</p>
               )}
-              <div className="flex justify-between font-bebas text-2xl text-primary pt-2 border-t border-border"><span>Total</span><span>S/{total.toFixed(2)}</span></div>
-              <a href={wa} target="_blank" rel="noreferrer" className="mt-3 w-full inline-flex items-center justify-center gap-2 py-3.5 font-heading uppercase tracking-wider text-sm bg-gradient-primary text-primary-foreground shadow-glow hover:scale-[1.02] transition rounded">
-                <MessageCircle className="h-4 w-4" /> Comprar por WhatsApp
-              </a>
+              <p className="text-[11px] text-muted-foreground">El envío o recojo se calcula en el checkout.</p>
+              <button
+                onClick={() => setCheckoutOpen(true)}
+                className="mt-3 w-full inline-flex items-center justify-center gap-2 py-3.5 font-heading uppercase tracking-wider text-sm bg-gradient-primary text-primary-foreground shadow-glow hover:scale-[1.02] transition rounded"
+              >
+                Ir al checkout <ArrowRight className="h-4 w-4" />
+              </button>
               <button onClick={clear} className="w-full text-xs text-muted-foreground hover:text-foreground mt-1">Vaciar canasta</button>
             </div>
           </>
         )}
       </SheetContent>
+      <CheckoutDialog open={checkoutOpen} onOpenChange={setCheckoutOpen} />
     </Sheet>
   );
 }
