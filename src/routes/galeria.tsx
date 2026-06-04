@@ -1,13 +1,13 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Layout } from "@/components/site/Layout";
 import { PageHero } from "@/components/site/PageHero";
-import musculacionImg from "@/assets/musculacion.jpg";
-import cardioImg from "@/assets/cardio.jpg";
-import funcionalImg from "@/assets/funcional.jpg";
-import clasesImg from "@/assets/clases.jpg";
-import coachImg from "@/assets/coach.jpg";
-import heroImg from "@/assets/hero.jpg";
-import nutricionImg from "@/assets/nutricion.jpg";
+import musculacionImg from "@/assets/images/musculacion.jpg";
+import cardioImg from "@/assets/images/cardio.jpg";
+import funcionalImg from "@/assets/images/funcional.jpg";
+import clasesImg from "@/assets/images/clases.jpg";
+import coachImg from "@/assets/images/coach.jpg";
+import heroImg from "@/assets/images/hero.jpg";
+import nutricionImg from "@/assets/images/nutricion.jpg";
 import { useState } from "react";
 
 export const Route = createFileRoute("/galeria")({

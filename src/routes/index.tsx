@@ -12,13 +12,13 @@ import { TestimonialsCarousel } from "@/components/site/TestimonialsCarousel";
 import { ProductImageCarousel } from "@/components/site/ProductImageCarousel";
 import { useCart } from "@/lib/cart-context";
 import { HeroFog } from "@/components/three/HeroFog";
-import heroImg from "@/assets/hero.jpg";
-import musculacionImg from "@/assets/musculacion.jpg";
-import cardioImg from "@/assets/cardio.jpg";
-import funcionalImg from "@/assets/funcional.jpg";
-import clasesImg from "@/assets/clases.jpg";
-import coachImg from "@/assets/coach.jpg";
-import nutricionImg from "@/assets/nutricion.jpg";
+import heroImg from "@/assets/images/hero.jpg";
+import musculacionImg from "@/assets/images/musculacion.jpg";
+import cardioImg from "@/assets/images/cardio.jpg";
+import funcionalImg from "@/assets/images/funcional.jpg";
+import clasesImg from "@/assets/images/clases.jpg";
+import coachImg from "@/assets/images/coach.jpg";
+import nutricionImg from "@/assets/images/nutricion.jpg";
 import {
   Dumbbell, HeartPulse, Activity, Users, Apple, UserCheck,
   Clock, MapPin, Star, Trophy, Flame, Check, ArrowRight,
