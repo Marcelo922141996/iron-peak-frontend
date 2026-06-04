@@ -12,19 +12,24 @@ import { TestimonialsCarousel } from "@/components/site/TestimonialsCarousel";
 import { ProductImageCarousel } from "@/components/site/ProductImageCarousel";
 import { useCart } from "@/lib/cart-context";
 import { HeroFog } from "@/components/three/HeroFog";
-import heroImg from "@/assets/images/hero.jpg";
-import musculacionImg from "@/assets/images/musculacion.jpg";
-import cardioImg from "@/assets/images/cardio.jpg";
-import funcionalImg from "@/assets/images/funcional.jpg";
-import clasesImg from "@/assets/images/clases.jpg";
-import coachImg from "@/assets/images/coach.jpg";
-import nutricionImg from "@/assets/images/nutricion.jpg";
+import heroImg from "@/assets/imagen/hero.jpg";
+import musculacionImg from "@/assets/imagen/musculacion.jpg";
+import cardioImg from "@/assets/imagen/cardio.jpg";
+import funcionalImg from "@/assets/imagen/funcional.jpg";
+import clasesImg from "@/assets/imagen/clases.jpg";
+import coachImg from "@/assets/imagen/coach.jpg";
+import nutricionImg from "@/assets/imagen/nutricion.jpg";
+import uTesti1 from "@/assets/imagen/u-testi-1.jpg";
+import uTesti2 from "@/assets/imagen/u-testi-2.jpg";
+import uTesti3 from "@/assets/imagen/u-testi-3.jpg";
+import uTesti4 from "@/assets/imagen/u-testi-4.jpg";
+import uTesti5 from "@/assets/imagen/u-testi-5.jpg";
 import {
   Dumbbell, HeartPulse, Activity, Users, Apple, UserCheck,
   Clock, MapPin, Star, Trophy, Flame, Check, ArrowRight,
   Instagram, MessageCircle, ShoppingBag, CalendarDays, Phone, Plus,
 } from "lucide-react";
-import { SEDES, PLANES, SITE, PRODUCTS, DIAS, SCHEDULE, TRANSFORMACIONES, INSTAGRAM_POST_URLS, type Objetivo, type Product } from "@/lib/site-data";
+import { SEDES, PLANES, SITE, PRODUCTS, DIAS, SCHEDULE, TRANSFORMACIONES, INSTAGRAM_POST_URLS, waUrl, type Objetivo, type Product } from "@/lib/site-data";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -57,18 +62,18 @@ const REASONS = [
 ];
 
 const TESTIMONIOS = [
-  { name: "Carlos M.", role: "Socio · Sede Principal", text: "El mejor gym de Jaén. Maquinaria nueva, ambiente top y los coaches te empujan a más.", img: "https://images.unsplash.com/photo-1531123897727-8f129e1688ce?w=400&q=80" },
-  { name: "Lucía R.", role: "Socia · Bolívar Plaza", text: "Bajé 12 kg en 4 meses con el plan nutricional. Hoy entreno feliz.", img: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=400&q=80" },
-  { name: "Diego T.", role: "Socio · Los Robles", text: "Llevo 2 años aquí. Es el ambiente, la gente y los precios. No cambio Iron Gym por nada.", img: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&q=80" },
-  { name: "Ana P.", role: "Socia · Pueblo Libre", text: "Los coaches son lo máximo, la sala siempre limpia y con buena energía.", img: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&q=80" },
-  { name: "Renato S.", role: "Socio · Alfredo Bastos", text: "Subí 14 kg de músculo en un año con el personal trainer.", img: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80" },
+  { name: "Carlos M.", role: "Socio · Sede Principal", text: "El mejor gym de Jaén. Maquinaria nueva, ambiente top y los coaches te empujan a más.", img: uTesti1 },
+  { name: "Lucía R.", role: "Socia · Bolívar Plaza", text: "Bajé 12 kg en 4 meses con el plan nutricional. Hoy entreno feliz.", img: uTesti2 },
+  { name: "Diego T.", role: "Socio · Los Robles", text: "Llevo 2 años aquí. Es el ambiente, la gente y los precios. No cambio Iron Gym por nada.", img: uTesti3 },
+  { name: "Ana P.", role: "Socia · Pueblo Libre", text: "Los coaches son lo máximo, la sala siempre limpia y con buena energía.", img: uTesti4 },
+  { name: "Renato S.", role: "Socio · Alfredo Bastos", text: "Subí 14 kg de músculo en un año con el personal trainer.", img: uTesti5 },
 ];
 
 const OBJETIVOS: ("Todos" | Objetivo)[] = ["Todos", "Pérdida de peso", "Ganancia muscular", "Definición"];
 const TIENDA_CATS = ["Todos", "Suplemento", "Indumentaria", "Accesorio", "Nutrición"];
 
 function planWaHref(planName: string) {
-  return `https://wa.me/51${SITE.whatsapp}?text=${encodeURIComponent(`Hola Iron Gym, quiero inscribirme al plan ${planName}. ¿Me dan más información?`)}`;
+  return waUrl(SITE.whatsapp, `Hola Iron Gym, quiero inscribirme al plan ${planName}. ¿Me dan más información?`);
 }
 
 function TiendaCard({ p, onOpen }: { p: Product; onOpen: () => void }) {
