@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Layout } from "@/components/site/Layout";
 import { PageHero } from "@/components/site/PageHero";
 import { Target, Eye, Heart, Award, Users, Calendar, MapPin, Trophy } from "lucide-react";
-import coachImg from "@/assets/images/coach.jpg";
+import coachImg from "@/assets/imagen/coach.jpg";
 
 export const Route = createFileRoute("/nosotros")({
   head: () => ({ meta: [
