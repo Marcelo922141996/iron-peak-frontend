@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { Instagram, Facebook, MessageCircle, MapPin, Mail, Phone } from "lucide-react";
-import { SITE, SEDES } from "@/lib/site-data";
+import { SITE, SEDES, waUrl } from "@/lib/site-data";
 
 export function Footer() {
   return (
@@ -14,7 +14,7 @@ export function Footer() {
           <div className="mt-5 flex gap-3">
             <a href={SITE.instagram} target="_blank" rel="noreferrer" className="grid h-10 w-10 place-items-center rounded-sm border border-border hover:border-primary hover:text-primary transition"><Instagram className="h-4 w-4" /></a>
             <a href={SITE.facebook} target="_blank" rel="noreferrer" className="grid h-10 w-10 place-items-center rounded-sm border border-border hover:border-primary hover:text-primary transition"><Facebook className="h-4 w-4" /></a>
-            <a href={`https://wa.me/51${SITE.whatsapp}`} target="_blank" rel="noreferrer" className="grid h-10 w-10 place-items-center rounded-sm border border-border hover:border-primary hover:text-primary transition"><MessageCircle className="h-4 w-4" /></a>
+            <a href={waUrl(SITE.whatsapp)} target="_blank" rel="noreferrer" className="grid h-10 w-10 place-items-center rounded-sm border border-border hover:border-primary hover:text-primary transition"><MessageCircle className="h-4 w-4" /></a>
           </div>
         </div>
         <div>

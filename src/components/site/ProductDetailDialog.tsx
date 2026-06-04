@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Dialog, DialogContent, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { MessageCircle, Truck, Store, Star, ShieldCheck, Package, ShoppingBag } from "lucide-react";
 import type { Product } from "@/lib/site-data";
-import { SITE } from "@/lib/site-data";
+import { SITE, waUrl } from "@/lib/site-data";
 import { useCart } from "@/lib/cart-context";
 import { pad3 } from "./ProductImageCarousel";
 
@@ -11,7 +11,7 @@ export function ProductDetailDialog({ product, open, onOpenChange }: { product: 
   const { add } = useCart();
   if (!product) return null;
   const imgs = pad3(product.images, product.cat);
-  const wa = `https://wa.me/51${SITE.whatsapp}?text=${encodeURIComponent(`Hola Iron Gym, quiero comprar "${product.name}" (S/${product.price}). ¿Me confirman disponibilidad y envío?`)}`;
+  const wa = waUrl(SITE.whatsapp, `Hola Iron Gym, quiero comprar "${product.name}" (S/${product.price}). ¿Me confirman disponibilidad y envío?`);
   const avg = product.comments.length
     ? (product.comments.reduce((a, c) => a + c.rating, 0) / product.comments.length).toFixed(1)
     : "—";
