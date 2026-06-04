@@ -2,12 +2,12 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { Layout } from "@/components/site/Layout";
 import { PageHero } from "@/components/site/PageHero";
 import { Dumbbell, HeartPulse, Activity, Users, UserCheck, Apple, Check, ArrowRight } from "lucide-react";
-import musculacionImg from "@/assets/musculacion.jpg";
-import cardioImg from "@/assets/cardio.jpg";
-import funcionalImg from "@/assets/funcional.jpg";
-import clasesImg from "@/assets/clases.jpg";
-import coachImg from "@/assets/coach.jpg";
-import nutricionImg from "@/assets/nutricion.jpg";
+import musculacionImg from "@/assets/images/musculacion.jpg";
+import cardioImg from "@/assets/images/cardio.jpg";
+import funcionalImg from "@/assets/images/funcional.jpg";
+import clasesImg from "@/assets/images/clases.jpg";
+import coachImg from "@/assets/images/coach.jpg";
+import nutricionImg from "@/assets/images/nutricion.jpg";
 
 export const Route = createFileRoute("/servicios")({
   head: () => ({ meta: [
