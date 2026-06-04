@@ -310,7 +310,7 @@ function Home() {
               <p className="text-muted-foreground mt-2 flex items-start gap-2"><Clock className="h-4 w-4 text-primary mt-1 shrink-0" /> {sedeActiva.horario}</p>
               <p className="text-muted-foreground mt-2 flex items-start gap-2"><Phone className="h-4 w-4 text-primary mt-1 shrink-0" /> +51 {sedeActiva.whatsapp}</p>
               <div className="mt-5 flex flex-wrap gap-3">
-                <a href={`https://wa.me/51${sedeActiva.whatsapp}?text=${encodeURIComponent(`Hola Iron Gym ${sedeActiva.name}, quiero más información.`)}`} target="_blank" rel="noreferrer" className="btn-pill btn-pill-primary"><MessageCircle className="h-4 w-4" /> WhatsApp sede</a>
+                <a href={waUrl(sedeActiva.whatsapp, `Hola Iron Gym ${sedeActiva.name}, quiero más información.`)} target="_blank" rel="noreferrer" className="btn-pill btn-pill-primary"><MessageCircle className="h-4 w-4" /> WhatsApp sede</a>
                 <a href={`https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(sedeActiva.address + ", Jaén, Perú")}`} target="_blank" rel="noreferrer" className="btn-pill btn-pill-glass">Cómo llegar <ArrowRight className="h-4 w-4" /></a>
               </div>
             </div>
@@ -401,7 +401,7 @@ function Home() {
                   <div className="text-xs text-muted-foreground">Coach {c.coach}</div>
                 </div>
                 <a
-                  href={`https://wa.me/51${SITE.whatsapp}?text=${encodeURIComponent(`Quiero reservar la clase de ${c.clase} el ${dia} a las ${c.hora}`)}`}
+                  href={waUrl(SITE.whatsapp, `Quiero reservar la clase de ${c.clase} el ${dia} a las ${c.hora}`)}
                   target="_blank" rel="noreferrer"
                   className="btn-pill btn-pill-outline !py-2 !px-4 !text-[10px]"
                 >
