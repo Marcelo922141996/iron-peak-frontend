@@ -2,12 +2,12 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Layout } from "@/components/site/Layout";
 import { PageHero } from "@/components/site/PageHero";
 import { Calendar, ArrowRight } from "lucide-react";
-import musculacionImg from "@/assets/images/musculacion.jpg";
-import cardioImg from "@/assets/images/cardio.jpg";
-import nutricionImg from "@/assets/images/nutricion.jpg";
-import funcionalImg from "@/assets/images/funcional.jpg";
-import clasesImg from "@/assets/images/clases.jpg";
-import coachImg from "@/assets/images/coach.jpg";
+import musculacionImg from "@/assets/imagen/musculacion.jpg";
+import cardioImg from "@/assets/imagen/cardio.jpg";
+import nutricionImg from "@/assets/imagen/nutricion.jpg";
+import funcionalImg from "@/assets/imagen/funcional.jpg";
+import clasesImg from "@/assets/imagen/clases.jpg";
+import coachImg from "@/assets/imagen/coach.jpg";
 
 export const Route = createFileRoute("/blog")({
   head: () => ({ meta: [

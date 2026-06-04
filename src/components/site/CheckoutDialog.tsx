@@ -5,7 +5,7 @@ import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Truck, Store, Wallet, Smartphone, MessageCircle, CheckCircle2 } from "lucide-react";
 import { useCart } from "@/lib/cart-context";
-import { SITE, SEDES } from "@/lib/site-data";
+import { SITE, SEDES, waUrl } from "@/lib/site-data";
 
 const SHIPPING_JAEN = 5;
 const FREE_SHIP_OVER = 200;
@@ -52,7 +52,7 @@ export function CheckoutDialog({ open, onOpenChange }: { open: boolean; onOpenCh
     `*Total: S/${total.toFixed(2)}*\n\n` +
     `¿Me confirman el pedido y los datos para ${payment === "efectivo" ? "el pago al recibir" : `el ${paymentLabel[payment]}`}?`;
 
-  const wa = `https://wa.me/51${SITE.whatsapp}?text=${encodeURIComponent(msg)}`;
+  const wa = waUrl(SITE.whatsapp, msg);
 
   const handleSend = () => {
     if (!valid) return;

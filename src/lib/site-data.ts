@@ -1,10 +1,46 @@
+import uLadyPro1 from "@/assets/imagen/u-lady-pro-1.jpg";
+import uLadyPro2 from "@/assets/imagen/u-lady-pro-2.jpg";
+import uLadyPro3 from "@/assets/imagen/u-lady-pro-3.jpg";
+import uWhey1 from "@/assets/imagen/u-whey-1.jpg";
+import uWhey2 from "@/assets/imagen/u-whey-2.jpg";
+import uCreatina from "@/assets/imagen/u-creatina.jpg";
+import uBcaa from "@/assets/imagen/u-bcaa.jpg";
+import uPreentreno from "@/assets/imagen/u-preentreno.jpg";
+import uQuemador from "@/assets/imagen/u-quemador.jpg";
+import uPolo from "@/assets/imagen/u-polo.jpg";
+import uTomatodo from "@/assets/imagen/u-tomatodo.jpg";
+import uShaker from "@/assets/imagen/u-shaker.jpg";
+import uGuantes from "@/assets/imagen/u-guantes.jpg";
+import uCinturon from "@/assets/imagen/u-cinturon.jpg";
+import uSnack from "@/assets/imagen/u-snack.jpg";
+import uTrans1a from "@/assets/imagen/u-trans-1a.jpg";
+import uTrans1b from "@/assets/imagen/u-trans-1b.jpg";
+import uTrans2a from "@/assets/imagen/u-trans-2a.jpg";
+import uTrans2b from "@/assets/imagen/u-trans-2b.jpg";
+import uTrans3a from "@/assets/imagen/u-trans-3a.jpg";
+import uTrans3b from "@/assets/imagen/u-trans-3b.jpg";
+import uTrans4a from "@/assets/imagen/u-trans-4a.jpg";
+import uTrans4b from "@/assets/imagen/u-trans-4b.jpg";
+import uTrans5a from "@/assets/imagen/u-trans-5a.jpg";
+import uTrans5b from "@/assets/imagen/u-trans-5b.jpg";
+import uTrans6b from "@/assets/imagen/u-trans-6b.jpg";
+import uIg3 from "@/assets/imagen/u-ig-3.jpg";
+import uIg4 from "@/assets/imagen/u-ig-4.jpg";
+
+const INSTAGRAM_URL = "https://www.instagram.com/gimnasioirongymjaen/";
+
+export function waUrl(phone: string, text?: string): string {
+  const base = `https://api.whatsapp.com/send?phone=51${phone}`;
+  return text ? `${base}&text=${encodeURIComponent(text)}` : base;
+}
+
 export const SITE = {
   name: "Iron Gym",
   tagline: "#SETUMEJORVERSION",
   city: "Jaén, Cajamarca · Perú",
   whatsapp: "988499194",
   whatsapp2: "912836539",
-  instagram: "https://instagram.com/gimnasioirongymjaen",
+  instagram: INSTAGRAM_URL,
   facebook: "https://facebook.com/gimnasioirongymjaen",
   email: "contacto@irongymjaen.pe",
 };
@@ -94,7 +130,7 @@ export const PRODUCTS: Product[] = [
   { id: "lady-pro", name: "Lady Pro Proteína", cat: "Suplemento", price: 95,
     desc: "Proteína con aguaje, suero de leche, soya y colágeno.",
     longDesc: "Fórmula femenina con aguaje, colágeno hidrolizado y suero de leche. 22g de proteína, vitaminas y minerales para tonificar y cuidar tu piel.",
-    images: ["https://images.unsplash.com/photo-1593095948071-474c5cc2989d?w=900&q=80","https://images.unsplash.com/photo-1579722821273-0f6c1b5d0b8a?w=900&q=80","https://images.unsplash.com/photo-1610725664285-7c57e6eeac3f?w=900&q=80"],
+    images: [uLadyPro1, uLadyPro2, uLadyPro3],
     shipping: { jaen: 5, nacional: 18, eta: "24–48 h en Jaén · 3–5 días nacional" },
     pickup: COMMON_PICKUP, stock: "Disponible",
     comments: [
@@ -105,7 +141,7 @@ export const PRODUCTS: Product[] = [
   { id: "whey-2kg", name: "Whey Protein 2kg", cat: "Suplemento", price: 220,
     desc: "Proteína de suero, 24g por scoop.",
     longDesc: "Proteína de suero concentrada e hidrolizada, 24g por scoop, bajo en azúcares. Ideal para hipertrofia y recuperación.",
-    images: ["https://images.unsplash.com/photo-1620207418302-439b387441b0?w=900&q=80","https://images.unsplash.com/photo-1599058917212-d750089bc07e?w=900&q=80"],
+    images: [uWhey1, uWhey2],
     shipping: { jaen: 5, nacional: 22, eta: "24–48 h en Jaén · 3–5 días nacional" },
     pickup: COMMON_PICKUP, stock: "Disponible",
     comments: [
@@ -115,7 +151,7 @@ export const PRODUCTS: Product[] = [
   { id: "creatina", name: "Creatina Monohidratada", cat: "Suplemento", price: 75,
     desc: "300g · Pura, sin saborizantes.",
     longDesc: "Creatina monohidratada micronizada 100% pura. 60 servicios. Aumenta fuerza, potencia y volumen muscular.",
-    images: ["https://images.unsplash.com/photo-1612531386530-97286d97c2d2?w=900&q=80"],
+    images: [uCreatina],
     shipping: { jaen: 5, nacional: 15, eta: "24–48 h en Jaén · 3–5 días nacional" },
     pickup: COMMON_PICKUP, stock: "Disponible",
     comments: [
@@ -125,63 +161,63 @@ export const PRODUCTS: Product[] = [
   { id: "bcaa", name: "BCAA 2:1:1", cat: "Suplemento", price: 90,
     desc: "Recuperación muscular acelerada.",
     longDesc: "Aminoácidos de cadena ramificada en proporción 2:1:1. Reducen la fatiga y aceleran la recuperación.",
-    images: ["https://images.unsplash.com/photo-1579758629938-03607ccdbaba?w=900&q=80"],
+    images: [uBcaa],
     shipping: { jaen: 5, nacional: 18, eta: "24–48 h en Jaén · 3–5 días nacional" },
     pickup: COMMON_PICKUP, stock: "Disponible",
     comments: [{ user: "Ana P.", rating: 5, text: "Menos agujetas al día siguiente." }]},
   { id: "preentreno", name: "Pre-entreno Burst", cat: "Suplemento", price: 110,
     desc: "Energía explosiva sin caída.",
     longDesc: "Pre-entreno con cafeína, beta-alanina y citrulina. Energía sostenida y bombeo brutal.",
-    images: ["https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=900&q=80"],
+    images: [uPreentreno],
     shipping: { jaen: 5, nacional: 18, eta: "24–48 h en Jaén · 3–5 días nacional" },
     pickup: COMMON_PICKUP, stock: "Pocas unidades",
     comments: [{ user: "Diego T.", rating: 5, text: "El bombeo es real, recomendado." }]},
   { id: "quemador", name: "Quemador Termogénico", cat: "Suplemento", price: 85,
     desc: "Apoyo al déficit calórico.",
     longDesc: "Termogénico con L-carnitina y té verde. Acelera el metabolismo y la oxidación de grasas.",
-    images: ["https://images.unsplash.com/photo-1579722820308-d74e571900a9?w=900&q=80"],
+    images: [uQuemador],
     shipping: { jaen: 5, nacional: 15, eta: "24–48 h en Jaén · 3–5 días nacional" },
     pickup: COMMON_PICKUP, stock: "Disponible",
     comments: [{ user: "María G.", rating: 4, text: "Me ayudó a romper meseta." }]},
   { id: "polo", name: "Polo Iron Gym", cat: "Indumentaria", price: 45,
     desc: "Algodón premium, logo bordado.",
     longDesc: "Polo de algodón pima 220g, logo bordado en pecho. Tallas S, M, L, XL. Color negro/rojo.",
-    images: ["https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=900&q=80"],
+    images: [uPolo],
     shipping: { jaen: 5, nacional: 12, eta: "24–48 h en Jaén · 3–5 días nacional" },
     pickup: COMMON_PICKUP, stock: "Disponible",
     comments: [{ user: "Renato S.", rating: 5, text: "Tela top, calza perfecto." }]},
   { id: "tomatodo", name: "Tomatodo Iron Gym 1L", cat: "Accesorio", price: 35,
     desc: "Acero inoxidable, doble pared.",
     longDesc: "Tomatodo de acero inoxidable doble pared 1L. Conserva frío 24h y caliente 12h. Logo grabado.",
-    images: ["https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=900&q=80"],
+    images: [uTomatodo],
     shipping: { jaen: 5, nacional: 12, eta: "24–48 h en Jaén · 3–5 días nacional" },
     pickup: COMMON_PICKUP, stock: "Disponible",
     comments: [{ user: "Andrea P.", rating: 5, text: "Mantiene el agua heladita todo el día." }]},
   { id: "shaker", name: "Shaker 600ml", cat: "Accesorio", price: 25,
     desc: "Resistente, libre de BPA.",
     longDesc: "Shaker con resorte mezclador, libre de BPA, escala medidora. Ideal para batidos.",
-    images: ["https://images.unsplash.com/photo-1626197031507-c17099753214?w=900&q=80"],
+    images: [uShaker],
     shipping: { jaen: 5, nacional: 10, eta: "24–48 h en Jaén · 3–5 días nacional" },
     pickup: COMMON_PICKUP, stock: "Disponible",
     comments: [{ user: "Carlos M.", rating: 4, text: "Hace su trabajo, sin filtraciones." }]},
   { id: "guantes", name: "Guantes de entrenamiento", cat: "Accesorio", price: 55,
     desc: "Cuero sintético, agarre firme.",
     longDesc: "Guantes con palma reforzada y muñequera ajustable. Tallas S, M, L.",
-    images: ["https://images.unsplash.com/photo-1517344800994-80b3486d4af9?w=900&q=80"],
+    images: [uGuantes],
     shipping: { jaen: 5, nacional: 12, eta: "24–48 h en Jaén · 3–5 días nacional" },
     pickup: COMMON_PICKUP, stock: "Disponible",
     comments: [{ user: "Jhon S.", rating: 5, text: "Mejor agarre y nada de callos." }]},
   { id: "cinturon", name: "Cinturón de levantamiento", cat: "Accesorio", price: 95,
     desc: "Cuero genuino, soporte lumbar.",
     longDesc: "Cinturón de cuero genuino 10cm con doble hebilla. Soporte lumbar para sentadilla y peso muerto.",
-    images: ["https://images.unsplash.com/photo-1599058917765-a780eda07a3e?w=900&q=80"],
+    images: [uCinturon],
     shipping: { jaen: 5, nacional: 18, eta: "24–48 h en Jaén · 3–5 días nacional" },
     pickup: COMMON_PICKUP, stock: "Pocas unidades",
     comments: [{ user: "Diego T.", rating: 5, text: "Soporte real, levanté 20kg más en sentadilla." }]},
   { id: "snack", name: "Snack proteico", cat: "Nutrición", price: 12,
     desc: "20g de proteína, sin azúcar.",
     longDesc: "Barra proteica 60g con 20g de proteína, sin azúcar añadido. Sabores chocolate y maní.",
-    images: ["https://images.unsplash.com/photo-1606312619070-d48b4c652a52?w=900&q=80"],
+    images: [uSnack],
     shipping: { jaen: 5, nacional: 10, eta: "24–48 h en Jaén · 3–5 días nacional" },
     pickup: COMMON_PICKUP, stock: "Disponible",
     comments: [{ user: "Lucía R.", rating: 5, text: "Mi snack post-entreno favorito." }]},
@@ -200,12 +236,12 @@ export const SCHEDULE: Record<string, { hora: string; clase: string; coach: stri
 
 export type Objetivo = "Pérdida de peso" | "Ganancia muscular" | "Definición";
 export const TRANSFORMACIONES: { name: string; objetivo: Objetivo; meses: number; antes: string; despues: string; quote: string }[] = [
-  { name: "Lucía R.", objetivo: "Pérdida de peso", meses: 4, antes: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&q=70", despues: "https://images.unsplash.com/photo-1518611012118-696072aa579a?w=600&q=70", quote: "Bajé 12 kg con el plan nutricional." },
-  { name: "Diego T.", objetivo: "Ganancia muscular", meses: 8, antes: "https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?w=600&q=70", despues: "https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?w=600&q=70", quote: "+9 kg de masa magra entrenando duro." },
-  { name: "Carlos M.", objetivo: "Definición", meses: 5, antes: "https://images.unsplash.com/photo-1532029837206-abbe2b7620e3?w=600&q=70", despues: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=600&q=70", quote: "Bajé 10% de grasa, marqué el abdomen." },
-  { name: "Ana P.", objetivo: "Pérdida de peso", meses: 6, antes: "https://images.unsplash.com/photo-1518310383802-640c2de311b2?w=600&q=70", despues: "https://images.unsplash.com/photo-1518310952931-b1de897abd40?w=600&q=70", quote: "-15 kg y una nueva versión de mí." },
-  { name: "Renato S.", objetivo: "Ganancia muscular", meses: 12, antes: "https://images.unsplash.com/photo-1567013127542-490d757e51fc?w=600&q=70", despues: "https://images.unsplash.com/photo-1583454152671-0c736ab1f6f1?w=600&q=70", quote: "Subí 14 kg de músculo con coach personal." },
-  { name: "María G.", objetivo: "Definición", meses: 4, antes: "https://images.unsplash.com/photo-1518310383802-640c2de311b2?w=600&q=70", despues: "https://images.unsplash.com/photo-1554344728-77cf90d9ed26?w=600&q=70", quote: "Tonifiqué piernas y glúteos." },
+  { name: "Lucía R.", objetivo: "Pérdida de peso", meses: 4, antes: uTrans1a, despues: uTrans1b, quote: "Bajé 12 kg con el plan nutricional." },
+  { name: "Diego T.", objetivo: "Ganancia muscular", meses: 8, antes: uTrans2a, despues: uTrans2b, quote: "+9 kg de masa magra entrenando duro." },
+  { name: "Carlos M.", objetivo: "Definición", meses: 5, antes: uTrans3a, despues: uTrans3b, quote: "Bajé 10% de grasa, marqué el abdomen." },
+  { name: "Ana P.", objetivo: "Pérdida de peso", meses: 6, antes: uTrans4a, despues: uTrans4b, quote: "-15 kg y una nueva versión de mí." },
+  { name: "Renato S.", objetivo: "Ganancia muscular", meses: 12, antes: uTrans5a, despues: uTrans5b, quote: "Subí 14 kg de músculo con coach personal." },
+  { name: "María G.", objetivo: "Definición", meses: 4, antes: uTrans4a, despues: uTrans6b, quote: "Tonifiqué piernas y glúteos." },
 ];
 
 // Configurable Instagram post URLs. Reemplaza por las URLs reales (formato: https://www.instagram.com/p/SHORTCODE/)
@@ -221,12 +257,12 @@ export const INSTAGRAM_POST_URLS: string[] = [
 ];
 
 export const INSTAGRAM_POSTS = [
-  { id: "1", url: "https://instagram.com/gimnasioirongymjaen", img: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=600&q=70", caption: "Leg day · Sede Principal" },
-  { id: "2", url: "https://instagram.com/gimnasioirongymjaen", img: "https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?w=600&q=70", caption: "Hombro a tope 💪" },
-  { id: "3", url: "https://instagram.com/gimnasioirongymjaen", img: "https://images.unsplash.com/photo-1574680096145-d05b474e2155?w=600&q=70", caption: "Spinning lleno hoy 🔥" },
-  { id: "4", url: "https://instagram.com/gimnasioirongymjaen", img: "https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=600&q=70", caption: "Funcional Total · Sábado 10am" },
-  { id: "5", url: "https://instagram.com/gimnasioirongymjaen", img: "https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?w=600&q=70", caption: "Coach Carlos en acción" },
-  { id: "6", url: "https://instagram.com/gimnasioirongymjaen", img: "https://images.unsplash.com/photo-1518611012118-696072aa579a?w=600&q=70", caption: "Cardio fire 🚴‍♀️" },
-  { id: "7", url: "https://instagram.com/gimnasioirongymjaen", img: "https://images.unsplash.com/photo-1532029837206-abbe2b7620e3?w=600&q=70", caption: "Bench press PR" },
-  { id: "8", url: "https://instagram.com/gimnasioirongymjaen", img: "https://images.unsplash.com/photo-1554344728-77cf90d9ed26?w=600&q=70", caption: "Comunidad Iron Gym" },
+  { id: "1", url: INSTAGRAM_URL, img: uTrans3b, caption: "Leg day · Sede Principal" },
+  { id: "2", url: INSTAGRAM_URL, img: uTrans2b, caption: "Hombro a tope 💪" },
+  { id: "3", url: INSTAGRAM_URL, img: uIg3, caption: "Spinning lleno hoy 🔥" },
+  { id: "4", url: INSTAGRAM_URL, img: uIg4, caption: "Funcional Total · Sábado 10am" },
+  { id: "5", url: INSTAGRAM_URL, img: uTrans2a, caption: "Coach Carlos en acción" },
+  { id: "6", url: INSTAGRAM_URL, img: uTrans1b, caption: "Cardio fire 🚴‍♀️" },
+  { id: "7", url: INSTAGRAM_URL, img: uTrans3a, caption: "Bench press PR" },
+  { id: "8", url: INSTAGRAM_URL, img: uTrans6b, caption: "Comunidad Iron Gym" },
 ];

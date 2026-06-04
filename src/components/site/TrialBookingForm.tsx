@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { CalendarDays, Clock, MapPin, MessageCircle } from "lucide-react";
-import { SEDES, DIAS, SITE } from "@/lib/site-data";
+import { SEDES, DIAS, SITE, waUrl } from "@/lib/site-data";
 
 const HORAS = ["06:00", "07:00", "09:00", "11:00", "16:00", "18:00", "19:30"];
 
@@ -13,11 +13,11 @@ export function TrialBookingForm() {
   const sedeObj = SEDES.find((s) => s.slug === sede)!;
   const safeName = name.trim().slice(0, 60);
   const message =
-    `Hola Iron Gym, soy ${safeName || "[mi nombre]"}.%0A` +
-    `Quiero reservar mi clase en *${sedeObj.name}*.%0A` +
-    `Día: *${dia}* · Hora: *${hora}*.%0A` +
+    `Hola Iron Gym, soy ${safeName || "[mi nombre]"}.\n` +
+    `Quiero reservar mi clase en *${sedeObj.name}*.\n` +
+    `Día: *${dia}* · Hora: *${hora}*.\n` +
     `¿Me confirman disponibilidad? 💪`;
-  const href = `https://wa.me/51${sedeObj.whatsapp}?text=${message}`;
+  const href = waUrl(sedeObj.whatsapp, message);
 
   const fieldCls =
     "mt-1.5 w-full bg-white/10 border border-white/15 rounded-full px-5 py-3 text-white placeholder:text-white/40 backdrop-blur focus:outline-none focus:border-primary transition";

@@ -1,27 +1,23 @@
 import { useEffect, useState } from "react";
 import { Package } from "lucide-react";
+import uLadyPro1 from "@/assets/imagen/u-lady-pro-1.jpg";
+import uQuemador from "@/assets/imagen/u-quemador.jpg";
+import uLadyPro3 from "@/assets/imagen/u-lady-pro-3.jpg";
+import uIndu1 from "@/assets/imagen/u-indu-1.jpg";
+import uIndu2 from "@/assets/imagen/u-indu-2.jpg";
+import uIndu3 from "@/assets/imagen/u-indu-3.jpg";
+import uGuantes from "@/assets/imagen/u-guantes.jpg";
+import uAcc2 from "@/assets/imagen/u-acc-2.jpg";
+import uCinturon from "@/assets/imagen/u-cinturon.jpg";
+import uSnack from "@/assets/imagen/u-snack.jpg";
+import uPreentreno from "@/assets/imagen/u-preentreno.jpg";
+import uNutri3 from "@/assets/imagen/u-nutri-3.jpg";
 
 const FALLBACKS: Record<string, string[]> = {
-  Suplemento: [
-    "https://images.unsplash.com/photo-1593095948071-474c5cc2989d?w=900&q=80",
-    "https://images.unsplash.com/photo-1579722820308-d74e571900a9?w=900&q=80",
-    "https://images.unsplash.com/photo-1610725664285-7c57e6eeac3f?w=900&q=80",
-  ],
-  Indumentaria: [
-    "https://images.unsplash.com/photo-1556906781-9a412961c28c?w=900&q=80",
-    "https://images.unsplash.com/photo-1583744946564-b52ac1c389c8?w=900&q=80",
-    "https://images.unsplash.com/photo-1618354691373-d851c5c3a990?w=900&q=80",
-  ],
-  Accesorio: [
-    "https://images.unsplash.com/photo-1517344800994-80b3486d4af9?w=900&q=80",
-    "https://images.unsplash.com/photo-1583500178690-f7fd39c79204?w=900&q=80",
-    "https://images.unsplash.com/photo-1599058917765-a780eda07a3e?w=900&q=80",
-  ],
-  Nutrición: [
-    "https://images.unsplash.com/photo-1606312619070-d48b4c652a52?w=900&q=80",
-    "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=900&q=80",
-    "https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=900&q=80",
-  ],
+  Suplemento: [uLadyPro1, uQuemador, uLadyPro3],
+  Indumentaria: [uIndu1, uIndu2, uIndu3],
+  Accesorio: [uGuantes, uAcc2, uCinturon],
+  Nutrición: [uSnack, uPreentreno, uNutri3],
 };
 
 export function pad3(images: string[], cat: string): string[] {
