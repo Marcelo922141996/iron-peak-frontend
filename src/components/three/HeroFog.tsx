@@ -4,8 +4,10 @@ import * as THREE from "three";
 
 function FogPlane() {
   const matRef = useRef<THREE.ShaderMaterial>(null);
-  useFrame((state) => {
-    if (matRef.current) matRef.current.uniforms.uTime.value = state.clock.elapsedTime;
+  const tRef = useRef(0);
+  useFrame((_state, delta) => {
+    tRef.current += delta;
+    if (matRef.current) matRef.current.uniforms.uTime.value = tRef.current;
   });
   return (
     <mesh position={[0, -1.2, 0]} rotation={[-Math.PI / 2.4, 0, 0]}>
