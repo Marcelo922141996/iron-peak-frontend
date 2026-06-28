@@ -5,10 +5,12 @@ import * as THREE from "three";
 
 function Dumbbell() {
   const ref = useRef<THREE.Group>(null);
-  useFrame((state, delta) => {
+  const tRef = useRef(0);
+  useFrame((_state, delta) => {
     if (!ref.current) return;
+    tRef.current += delta;
     ref.current.rotation.y += delta * 0.6;
-    ref.current.rotation.x = Math.sin(state.clock.elapsedTime * 0.5) * 0.2;
+    ref.current.rotation.x = Math.sin(tRef.current * 0.5) * 0.2;
   });
   const red = new THREE.Color("#E10600");
   return (

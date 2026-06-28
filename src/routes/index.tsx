@@ -79,26 +79,28 @@ function TiendaCard({ p, onOpen }: { p: Product; onOpen: () => void }) {
   const { add } = useCart();
   return (
     <div className="tienda-card glass !p-0 overflow-hidden flex flex-col group" data-fx="card">
-      <div
-        role="button"
-        tabIndex={0}
-        onClick={onOpen}
-        onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); onOpen(); } }}
-        className="aspect-square bg-gradient-hero relative overflow-hidden block w-full text-left cursor-pointer"
-      >
+      <div className="aspect-square bg-gradient-hero relative overflow-hidden block w-full text-left">
         <ProductImageCarousel images={p.images} cat={p.cat} alt={p.name} />
         <div className="absolute inset-0 bg-primary/0 group-hover:bg-primary/10 transition duration-500 pointer-events-none" />
         <span className="absolute top-3 left-3 z-10 px-2.5 py-1 rounded-full bg-black/60 backdrop-blur text-[10px] font-techmono uppercase tracking-widest text-white/80 border border-white/10">{p.cat}</span>
+        <button
+          type="button"
+          onClick={onOpen}
+          aria-label={`Ver detalle de ${p.name}`}
+          className="absolute inset-0 z-[5] cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+        />
       </div>
       <div className="p-4 sm:p-5 flex flex-col flex-1">
-        <button onClick={onOpen} className="text-left">
+        <button type="button" onClick={onOpen} className="text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded">
           <h3 className="font-heading text-sm sm:text-base uppercase">{p.name}</h3>
           <p className="text-xs text-muted-foreground mt-1 line-clamp-2">{p.desc}</p>
         </button>
         <div className="mt-3 flex items-center justify-between gap-2">
           <span className="font-bebas text-primary" style={{ fontSize: "1.4rem" }}>S/{p.price}</span>
           <button
+            type="button"
             onClick={() => add(p, 1)}
+            aria-label={`Agregar ${p.name} a la canasta`}
             className="inline-flex items-center gap-1 px-3 py-2 rounded-full bg-gradient-primary text-primary-foreground text-[10px] font-heading uppercase tracking-wider shadow-glow hover:scale-105 transition"
           >
             <Plus className="h-3 w-3" /> Agregar

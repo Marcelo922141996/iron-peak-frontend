@@ -30,7 +30,7 @@ export function ProductDetailDialog({ product, open, onOpenChange }: { product: 
             </div>
             <div className="mt-3 grid grid-cols-3 gap-2">
               {imgs.map((src, i) => (
-                <button key={i} onClick={() => setIdx(i)} className={`aspect-square overflow-hidden border ${i === idx ? "border-primary" : "border-border"}`}>
+                <button key={i} type="button" onClick={() => setIdx(i)} aria-label={`Ver imagen ${i + 1}`} aria-pressed={i === idx} className={`aspect-square overflow-hidden border ${i === idx ? "border-primary" : "border-border"}`}>
                   <img src={src} alt="" className="h-full w-full object-cover" />
                 </button>
               ))}
