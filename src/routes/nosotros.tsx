@@ -3,6 +3,10 @@ import { Layout } from "@/components/site/Layout";
 import { PageHero } from "@/components/site/PageHero";
 import { Target, Eye, Heart, Award, Users, Calendar, MapPin, Trophy } from "lucide-react";
 import coachImg from "@/assets/imagen/coach.jpg";
+import uTesti1 from "@/assets/imagen/u-testi-1.jpg";
+import uTesti2 from "@/assets/imagen/u-testi-2.jpg";
+import uTesti3 from "@/assets/imagen/u-testi-3.jpg";
+import uTesti5 from "@/assets/imagen/u-testi-5.jpg";
 
 export const Route = createFileRoute("/nosotros")({
   head: () => ({ meta: [
@@ -21,10 +25,10 @@ const VALORES = [
 ];
 
 const COACHES = [
-  { name: "Carlos Vega", spec: "Hipertrofia & Fuerza", cert: "CPT-NSCA" },
-  { name: "Andrea Núñez", spec: "Funcional & HIIT", cert: "ACE Certified" },
-  { name: "Jhon Salazar", spec: "Powerlifting", cert: "USAPL Coach" },
-  { name: "María Torres", spec: "Nutrición Deportiva", cert: "Lic. Nutrición" },
+  { name: "Carlos Vega", spec: "Hipertrofia & Fuerza", cert: "CPT-NSCA", img: uTesti2 },
+  { name: "Andrea Núñez", spec: "Funcional & HIIT", cert: "ACE Certified", img: uTesti1 },
+  { name: "Jhon Salazar", spec: "Powerlifting", cert: "USAPL Coach", img: uTesti5 },
+  { name: "María Torres", spec: "Nutrición Deportiva", cert: "Lic. Nutrición", img: uTesti3 },
 ];
 
 function Page() {
@@ -83,8 +87,8 @@ function Page() {
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-5">
             {COACHES.map((c) => (
               <div key={c.name} className="p-7 border border-border bg-card">
-                <div className="aspect-square bg-gradient-primary mb-4 grid place-items-center">
-                  <Users className="h-12 w-12 text-primary-foreground" strokeWidth={1.5} />
+                <div className="aspect-square mb-4 overflow-hidden">
+                  <img src={c.img} alt={c.name} loading="lazy" className="h-full w-full object-cover" />
                 </div>
                 <h3 className="font-heading uppercase text-lg">{c.name}</h3>
                 <p className="text-sm text-primary mt-1">{c.spec}</p>
