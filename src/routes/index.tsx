@@ -79,11 +79,17 @@ function TiendaCard({ p, onOpen }: { p: Product; onOpen: () => void }) {
   const { add } = useCart();
   return (
     <div className="tienda-card glass !p-0 overflow-hidden flex flex-col group" data-fx="card">
-      <button onClick={onOpen} className="aspect-square bg-gradient-hero relative overflow-hidden block w-full text-left">
+      <div
+        role="button"
+        tabIndex={0}
+        onClick={onOpen}
+        onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); onOpen(); } }}
+        className="aspect-square bg-gradient-hero relative overflow-hidden block w-full text-left cursor-pointer"
+      >
         <ProductImageCarousel images={p.images} cat={p.cat} alt={p.name} />
         <div className="absolute inset-0 bg-primary/0 group-hover:bg-primary/10 transition duration-500 pointer-events-none" />
         <span className="absolute top-3 left-3 z-10 px-2.5 py-1 rounded-full bg-black/60 backdrop-blur text-[10px] font-techmono uppercase tracking-widest text-white/80 border border-white/10">{p.cat}</span>
-      </button>
+      </div>
       <div className="p-4 sm:p-5 flex flex-col flex-1">
         <button onClick={onOpen} className="text-left">
           <h3 className="font-heading text-sm sm:text-base uppercase">{p.name}</h3>
