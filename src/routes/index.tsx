@@ -5,7 +5,6 @@ import { Layout } from "@/components/site/Layout";
 import { BeforeAfterSlider } from "@/components/site/BeforeAfterSlider";
 import { TrialBookingForm } from "@/components/site/TrialBookingForm";
 import { ProductDetailDialog } from "@/components/site/ProductDetailDialog";
-import { InstagramEmbedGrid } from "@/components/site/InstagramEmbedGrid";
 import { CounterStat } from "@/components/site/CounterStat";
 import { InfiniteMarquee } from "@/components/site/InfiniteMarquee";
 import { TestimonialsCarousel } from "@/components/site/TestimonialsCarousel";
@@ -29,7 +28,7 @@ import {
   Clock, MapPin, Star, Trophy, Flame, Check, ArrowRight,
   Instagram, MessageCircle, ShoppingBag, CalendarDays, Phone, Plus,
 } from "lucide-react";
-import { SEDES, PLANES, SITE, PRODUCTS, DIAS, SCHEDULE, TRANSFORMACIONES, INSTAGRAM_POST_URLS, waUrl, type Objetivo, type Product } from "@/lib/site-data";
+import { SEDES, PLANES, SITE, PRODUCTS, DIAS, SCHEDULE, TRANSFORMACIONES, INSTAGRAM_POSTS, waUrl, type Objetivo, type Product } from "@/lib/site-data";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -330,7 +329,7 @@ function Home() {
               <div
                 key={p.name}
                 data-fx="card"
-                className={`glass relative w-full p-7 flex flex-col ${p.highlight ? "lg:scale-105 z-10 border-primary/60" : ""}`}
+                className={`glass relative w-full p-7 flex flex-col ${p.highlight ? "z-10 border-primary/60" : ""}`}
                 style={{ borderRadius: 24 }}
               >
                 {p.highlight && (
@@ -482,7 +481,28 @@ function Home() {
           </div>
           <a href={SITE.instagram} target="_blank" rel="noreferrer" className="btn-pill btn-pill-outline">Ver perfil <ArrowRight className="h-4 w-4" /></a>
         </div>
-        <InstagramEmbedGrid urls={INSTAGRAM_POST_URLS} />
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+          {INSTAGRAM_POSTS.map((post) => (
+            <a
+              key={post.id}
+              href={post.url}
+              target="_blank"
+              rel="noreferrer"
+              className="group relative block aspect-square overflow-hidden border border-border bg-card"
+            >
+              <img
+                src={post.img}
+                alt={post.caption}
+                loading="lazy"
+                className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-3">
+                <Instagram className="h-5 w-5 text-white mb-1" />
+                <p className="text-xs text-white font-medium line-clamp-2">{post.caption}</p>
+              </div>
+            </a>
+          ))}
+        </div>
       </section>
 
       {/* TESTIMONIOS */}
