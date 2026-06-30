@@ -72,14 +72,18 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Iron Gym Jaén · #SETUMEJORVERSION" },
-      { name: "description", content: "El gimnasio más emblemático de Jaén. 5 sedes, maquinaria de élite, atención desde las 5:00 AM." },
+      { title: "Iron Gym Jaén" },
+      { name: "description", content: "El gimnasio más emblemático de Jaén. 5 sedes, maquinaria de élite." },
       { name: "author", content: "Iron Gym Jaén" },
-      { property: "og:title", content: "Iron Gym Jaén · #SETUMEJORVERSION" },
-      { property: "og:description", content: "5 sedes en Jaén. Inscríbete hoy." },
+      { property: "og:title", content: "Iron Gym Jaén" },
+      { property: "og:description", content: "El gimnasio más emblemático de Jaén. 5 sedes, maquinaria de élite." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
       { name: "twitter:site", content: "@Lovable" },
+      { name: "twitter:title", content: "Iron Gym Jaén" },
+      { name: "twitter:description", content: "El gimnasio más emblemático de Jaén. 5 sedes, maquinaria de élite." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/93a8f21b-4c27-4386-8d72-27f6dc82fd36/id-preview-da987c00--3da5b4db-6e8c-4234-9304-2e926780b8ed.lovable.app-1780413200585.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/93a8f21b-4c27-4386-8d72-27f6dc82fd36/id-preview-da987c00--3da5b4db-6e8c-4234-9304-2e926780b8ed.lovable.app-1780413200585.png" },
     ],
     links: [
       {
