@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import { Menu, X, Dumbbell, Sun, Moon } from "lucide-react";
+import { Menu, X, Sun, Moon } from "lucide-react";
+import logoAsset from "@/assets/logo-irongym.jpg.asset.json";
 
 const NAV = [
   { to: "/", label: "Inicio" },
