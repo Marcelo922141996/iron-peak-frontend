@@ -30,11 +30,12 @@ export function Header() {
   return (
     <header className="sticky top-0 z-50 border-b border-border/60 bg-background/80 backdrop-blur-xl">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 lg:px-8">
-        <Link to="/" className="flex items-center gap-2">
-          <span className="grid h-9 w-9 place-items-center rounded-sm bg-gradient-primary shadow-glow">
-            <Dumbbell className="h-5 w-5 text-primary-foreground" strokeWidth={2.5} />
-          </span>
-          <span className="font-display text-2xl tracking-wider">IRON <span className="text-primary">GYM</span></span>
+        <Link to="/" className="flex items-center">
+          <img
+            src={logoAsset.url}
+            alt="Iron Gym Jaén - Fitness & Musculación"
+            className="h-10 w-auto object-contain"
+          />
         </Link>
         <nav className="hidden lg:flex items-center gap-1">
           {NAV.map((n) => (
