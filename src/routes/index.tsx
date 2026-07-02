@@ -337,7 +337,7 @@ function Home() {
               <div
                 key={p.name}
                 data-fx="card"
-                className={`glass relative w-full p-7 flex flex-col ${p.highlight ? "z-10 border-primary/60" : ""}`}
+                className={`glass relative w-full p-7 flex flex-col ${p.highlight ? "z-10 border-primary/60 lg:translate-y-6" : ""}`}
                 style={{ borderRadius: 24 }}
               >
                 {p.highlight && (
