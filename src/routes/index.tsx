@@ -337,7 +337,7 @@ function Home() {
               <div
                 key={p.name}
                 data-fx="card"
-                className={`glass relative w-full p-7 flex flex-col ${p.highlight ? "z-10 border-primary/60" : ""}`}
+                className={`glass relative w-full p-7 flex flex-col ${p.highlight ? "z-10 border-primary/60 lg:translate-y-6" : ""}`}
                 style={{ borderRadius: 24 }}
               >
                 {p.highlight && (
@@ -424,7 +424,7 @@ function Home() {
       <section className="mx-auto max-w-7xl px-4 lg:px-8 py-24">
         <div className="text-center mb-10">
           <p className="font-heading uppercase tracking-[0.3em] text-primary text-sm">Transformaciones</p>
-          <h2 className="font-bebas mt-3" style={{ fontSize: "clamp(2.5rem, 7vw, 5.6rem)" }}>ANTES &amp; DESPUÉS</h2>
+          <h2 className="font-bebas mt-3" style={{ fontSize: "clamp(2.5rem, 7vw, 5.6rem)" }}>ANTES Y DESPUÉS</h2>
           <p className="text-muted-foreground mt-3 max-w-xl mx-auto">Arrastra el slider y comprueba cómo entrenan, cambian y rompen sus límites en Iron Gym.</p>
         </div>
         <div className="flex flex-wrap gap-2 mb-10 justify-center">
